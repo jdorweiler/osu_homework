@@ -6,7 +6,6 @@
 # use: python problem6.py
 import sys
 import numpy as np
-import struct 
 
 def main():
 	bigNum = []
