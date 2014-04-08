@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+
+\begin{document}
+
+question 3. 
+
+$ A - B \subseteq A$
+
+Assume that $x \in A-B$. Then it follows that $x \in A$ and $x \notin B$. Since $x \in A$
+
+ the statement $ A - B \subseteq A$ holds.\\ 
+
+Question 4
+
+a. All good weight lifters are strong.
+
+$ (W(x) \rightarrow S(x))$
+
+b) Good weight lifters are not a good basketball player
+
+$ W(x) \rightarrow \neg B(x)$\\
+
+c) If someone is strong then they are a good basketball player or a good weight lifter.
+
+$ \forall x (S(x) \rightarrow (B(x) \lor W(x))$\\
+
+d) There is someone who is a good basketball player and a good weight lifter.
+
+$ \exists x (B(x) \land W(x))$
+\\
+
+question 5\\
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline 
+p & q & r & $p \rightarrow q$ (2) & $ (2) \rightarrow R$ & $P \land \neg Q$ (3) & (3) $\lor R$ \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 & 0 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+\hline 
+1 & 0 & 1 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 0 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+\hline 
+• & • & • & • & • & • & • \\ 
+\hline 
+• & • & • & • & • & • & • \\ 
+\hline 
+\end{tabular} 
+
+Columns 5 and 7 are identical so they are logically equivalent. 
+\\
+
+question 6
+
+Use a direct proof to show that the sum of two rational numbers is rational. (Recall that a number is rational if and only if it can be expressed as the ratio of integers.)\\
+
+Assume that a and b are rational numbers.  so $a = \frac{x}{z}, and b = \frac{j}{k}$ and x,z,j, and k are also integers.  Then the sum of $a+b = \frac{x+j}{z+k} $ which is also a rational number. \\
+
+Question 7. 
+
+Assume for contradiction that n and m have the same parity.  If m and n are even:
+
+$n = 2k_1, m = 2k_2$
+
+$2k_1-5(2k_2) = 2(k_1 - 5k_2)$ which is an even number and contradicts our assumption that$n-5m$ is odd. \\
+
+For the case when they are odd.
+
+$n=2k_1+1, m=2k_2+1$
+
+$2k_1+1-5(2k_2+1) = 2(k_1-5k_2+3)$ which is also even and contradicts our assumption. \\
+
+Question 8:
+
+$\sum_{j=3}^6 (5j^2+(-1)^j) = \sum_{j=3}^6 (5j^2) + \sum_{j=3}^6 (-1)^j = (15^2+20^2+30^2)+ \sum_{j=0}^6 (-1)^j - \sum_{j=0}^2 (-1)^j $
+
+$ = (15^2+20^2+30^2)+ (\frac{(-1)^7-1}{-1-1})- (\frac{(-1)^3-1}{-1-1})$\\
+
+$\sum_{i=0}^8 (2^{i+1} - 3) = \sum_{i=0}^8 2^{i+1} - 8*3 = 2* \sum_{i=0}^8 2^i - 8*3$
+
+$= 2*\frac{2^9-1}{2-1} - 24$\\
+
+question 9:
+Base case: P(0) $3^0$ = 1, $\frac{3^0-1}{2}=1$
+
+inductive case:
+
+$ 3^n = \frac{3^{n+1}-1}{2} $
+
+for n=k:
+
+$ 3^k = \frac{3^{k+1}-1}{2} $
+
+and for n=k+1
+
+$ 3^{k+1} = \frac{3^{k+2}-1}{2} $
+
+assuming that $ 3^k = \frac{3^{k+1}-1}{2} $ is true then:
+
+$\frac{3^{k+1}-1}{2} + 3^{k+1}$ = $\frac{3^{k+1}-1}{2} + \frac{2*3^{k+1}}{2} =  \frac{3^{k+1}-1+2*3^{k+1}}{2} = \frac{3^{k+1}*(1+2)-1}{2} = \frac{3^{k+2}-1}{2}$ so the hypothesis holds. \\
+
+question 10:
+
+Use strong induction to prove that every amount of postage of 12 cents or more can be formed using just 4-cent and 5-cent stamps\\
+
+Base case:
+
+ P(12) = 4*4*4 = 12 
+
+p(13) = 4*4*5 = 13
+
+p(14) = 5*5*4 =14
+
+This proves the first three base cases. n, n+1, and n+2 
+
+Inductive case: 
+
+Assume a new stamp k such that $12 \leq k \leq j$. We know p(n)...p(n+2) is true. The next stamp P(n+3) has to be true since P(n+2) was proven in our base case.  
+
+\end{document}

@@ -1,0 +1,9 @@
+Question 2
+The trouble with binary search trees is that they can become unbalanced depending on the order that you
+insert values. Give an order for inserting the values 1 through 7 such that the resulting tree is a full binary
+search tree. This problem does not require you to fill in a tree, just write down the order in which you would
+insert the values. (Hint: it might be helpful to first draw the full tree to figure out how the values must be
+arranged, then you can determine the order to add them!
+
+4 2 6 1 3 5 7
+

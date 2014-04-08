@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+<script src="jquery-1.10.2.min.js"></script>
+<script src="jquery.cookie.js"></script>
+
+</head><body>
+<input type="text" id="number" >
+<div id="position"></div>
+<input type="button" value="Save Number" style="width:100px" onclick="store(document.getElementById('number').value)"></input><br>
+<input type="button" value="Clear" style="width:100px" onclick="erase()"></input><br>
+<input type="button" value="Load" style="width:100px" onclick="load()"></input><br>
+<input type="button" value="Multiply by 42" style="width:100px" onclick="mult()"></input>
+<script>
+function store(number){
+	if(!window["localStorage"]){
+			alert("saved");
+		$.cookie("userNumber", number,{expiers:1});
+	}
+	else{
+		localStorage["userNumber"] = number;
+	}
+}
+
+function load(){
+	if(!window["localStorage"]){
+		var number = $.cookie("userNumber");
+	}
+	else{
+		var number = localStorage["userNumber"];
+	}
+	$("#number").val(number);
+}
+
+function erase(){
+	if(!window["localStorage"]){
+		$.cookie("userNumber", {expiers:-1});
+	}
+	else{
+		localStorage.clear("userNumber");
+	}
+}
+
+function mult(){
+	if(!window["localStorage"]){
+		var number
+	}
+	else{
+		var number = localStorage["userNumber"];
+		number *= 42;
+		store(number);
+	}
+	$("#number").val(number);
+}
+
+
+
+</script>
+</body></html>

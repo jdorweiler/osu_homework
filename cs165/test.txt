@@ -1,0 +1,161 @@
+
+2. Demonstrates understanding of binary numbers Line:  499
+3. Demonstrates understanding of hexadecimal numbers Line:  502
+4. Demonstrates understanding of two's complement numbers Line:  531
+5. Uses some pre-defined macro from an existing include or library Line:  553
+6. Uses variables in C++  Line:  483
+7. Uses some form of boolean expression Line:  551
+8. Uses some form of arithmetic expression Line:  523
+9. Uses some form of simple output Line:  532
+10. Uses some form of simple input Line:  544
+12. Uses some form of conditional Line:  283
+13. Uses some form of logical or bitwise operator Line:  551
+14. Uses at least one loop, Line:  551
+15. Uses a random number Line:  523
+17. Demonstrates some form of debugging tricks **This while loop filters bad user input ** Line:  551
+18. Uses at least one function that you define Line:  563
+19. Generally uses functional decomposition ** kept Main() very short ** Line:  245
+20. Demonstrates how scope of variables works ** vector declared in a functions an passed around by ref Line:  380
+21. Demonstrates the different ways to pass variables ** Array pointer passed by address**  Line:  438
+22. Demonstrates function overloading ** this line uses overloaded ostream ** Line:  388
+23. Uses at least one string variable Line:  366
+24. Uses some form of recursion ** printed from recursive array function ** Line:  471
+25. Uses at least one one-dimensional array Line:  401
+26. Uses at least one multi-dimensional array Line:  423
+27. Uses at least one statically declared array Line:  401
+28. Uses at least one dynamically declared array Line:  423
+29. Uses at least one command line argument ** for the file name ** Line:  279
+32. Defines at least one class ** Animal Class ** Line:  333
+33. Uses at least one object ** Getting type from animal object ** Line:  384
+36. Attempts to use a pointer to a class ** smart pointer to animal class ** Line:  308
+37. Uses its own namespace ** Animal class is in the Zoo namespace Line:  311
+39. Uses at least one vector Line:  308
+40. Defines classes covering the use of default constructors ** Animal subclasses use default constructors Line:  645
+41. Demonstrates overloaded operators ** overloaded ostream in animal class ** Line:  49
+42. Uses some form of file IO Line:  49
+43. Uses other classes for some neat effects ** Used vectors, map, and shared_pointers ** Line:  0
+44. Uses inheritance ** Animal sub-types inherit from the animal class ** Line:  0
+45. Uses polymorphism  ** virtual ostream and getType functions for the sub classes of animal Line:  0
+46. Uses exceptions Line:  291
+
+No. of Requirements Met: 38
+2. Demonstrates understanding of binary numbers Line:  499
+3. Demonstrates understanding of hexadecimal numbers Line:  502
+4. Demonstrates understanding of two's complement numbers Line:  531
+5. Uses some pre-defined macro from an existing include or library Line:  553
+6. Uses variables in C++  Line:  483
+7. Uses some form of boolean expression Line:  551
+8. Uses some form of arithmetic expression Line:  523
+9. Uses some form of simple output Line:  532
+10. Uses some form of simple input Line:  544
+12. Uses some form of conditional Line:  283
+13. Uses some form of logical or bitwise operator Line:  551
+14. Uses at least one loop, Line:  551
+15. Uses a random number Line:  523
+17. Demonstrates some form of debugging tricks **This while loop filters bad user input ** Line:  551
+18. Uses at least one function that you define Line:  563
+19. Generally uses functional decomposition ** kept Main() very short ** Line:  245
+20. Demonstrates how scope of variables works ** vector declared in a functions an passed around by ref Line:  380
+21. Demonstrates the different ways to pass variables ** Array pointer passed by address**  Line:  438
+22. Demonstrates function overloading ** this line uses overloaded ostream ** Line:  388
+23. Uses at least one string variable Line:  366
+24. Uses some form of recursion ** printed from recursive array function ** Line:  471
+25. Uses at least one one-dimensional array Line:  401
+26. Uses at least one multi-dimensional array Line:  423
+27. Uses at least one statically declared array Line:  401
+28. Uses at least one dynamically declared array Line:  423
+29. Uses at least one command line argument ** for the file name ** Line:  279
+32. Defines at least one class ** Animal Class ** Line:  333
+33. Uses at least one object ** Getting type from animal object ** Line:  384
+36. Attempts to use a pointer to a class ** smart pointer to animal class ** Line:  308
+37. Uses its own namespace ** Animal class is in the Zoo namespace Line:  311
+39. Uses at least one vector Line:  308
+40. Defines classes covering the use of default constructors ** Animal subclasses use default constructors Line:  645
+41. Demonstrates overloaded operators ** overloaded ostream in animal class ** Line:  49
+42. Uses some form of file IO Line:  49
+43. Uses other classes for some neat effects ** Used vectors, map, and shared_pointers ** Line:  0
+44. Uses inheritance ** Animal sub-types inherit from the animal class ** Line:  0
+45. Uses polymorphism  ** virtual ostream and getType functions for the sub classes of animal Line:  0
+46. Uses exceptions Line:  291
+
+No. of Requirements Met: 38/45
+2. Demonstrates understanding of binary numbers Line:  538
+3. Demonstrates understanding of hexadecimal numbers Line:  541
+4. Demonstrates understanding of two's complement numbers Line:  569
+5. Uses some pre-defined macro from an existing include or library Line:  591
+6. Uses variables in C++  Line:  522
+7. Uses some form of boolean expression Line:  589
+8. Uses some form of arithmetic expression Line:  561
+9. Uses some form of simple output Line:  570
+10. Uses some form of simple input Line:  582
+12. Uses some form of conditional Line:  284
+13. Uses some form of logical or bitwise operator Line:  589
+14. Uses at least one loop, Line:  589
+15. Uses a random number Line:  561
+17. Demonstrates some form of debugging tricks **This while loop filters bad user input ** Line:  589
+18. Uses at least one function that you define Line:  601
+19. Generally uses functional decomposition ** kept Main() very short ** Line:  245
+20. Demonstrates how scope of variables works ** vector declared in a functions an passed around by ref Line:  388
+21. Demonstrates the different ways to pass variables ** Array pointer passed by address**  Line:  458
+22. Demonstrates function overloading ** this line uses overloaded ostream ** Line:  396
+23. Uses at least one string variable Line:  369
+24. Uses some form of recursion ** printed from recursive array function ** Line:  505
+25. Uses at least one one-dimensional array Line:  417
+26. Uses at least one multi-dimensional array Line:  439
+27. Uses at least one statically declared array Line:  417
+28. Uses at least one dynamically declared array Line:  439
+29. Uses at least one command line argument ** for the file name ** Line:  280
+32. Defines at least one class ** Animal Class ** Line:  335
+33. Uses at least one object ** Getting type from animal object ** Line:  392
+36. Attempts to use a pointer to a class ** smart pointer to animal class ** Line:  309
+37. Uses its own namespace ** Animal class is in the Zoo namespace Line:  312
+39. Uses at least one vector Line:  309
+40. Defines classes covering the use of default constructors ** Animal subclasses use default constructors Line:  683
+41. Demonstrates overloaded operators ** overloaded ostream in animal class ** Line:  49
+42. Uses some form of file IO Line:  49
+43. Uses other classes for some neat effects ** Used vectors, map, and shared_pointers ** Line:  0
+44. Uses inheritance ** Animal sub-types inherit from the animal class ** Line:  0
+45. Uses polymorphism  ** virtual ostream and getType functions for the sub classes of animal Line:  0
+46. Uses exceptions Line:  292
+
+No. of Requirements Met: 38/45
+2. Demonstrates understanding of binary numbers Line:  544
+3. Demonstrates understanding of hexadecimal numbers Line:  547
+4. Demonstrates understanding of two's complement numbers Line:  575
+5. Uses some pre-defined macro from an existing include or library Line:  597
+6. Uses variables in C++  Line:  528
+7. Uses some form of boolean expression Line:  595
+8. Uses some form of arithmetic expression Line:  567
+9. Uses some form of simple output Line:  576
+10. Uses some form of simple input Line:  588
+12. Uses some form of conditional Line:  284
+13. Uses some form of logical or bitwise operator Line:  595
+14. Uses at least one loop, Line:  595
+15. Uses a random number Line:  567
+17. Demonstrates some form of debugging tricks **This while loop filters bad user input ** Line:  595
+18. Uses at least one function that you define Line:  607
+19. Generally uses functional decomposition ** kept Main() very short ** Line:  245
+20. Demonstrates how scope of variables works ** vector declared in a functions an passed around by ref Line:  389
+21. Demonstrates the different ways to pass variables ** Array pointer passed by address**  Line:  464
+22. Demonstrates function overloading ** this line uses overloaded ostream ** Line:  397
+23. Uses at least one string variable Line:  369
+24. Uses some form of recursion ** printed from recursive array function ** Line:  511
+25. Uses at least one one-dimensional array Line:  418
+26. Uses at least one multi-dimensional array Line:  440
+27. Uses at least one statically declared array Line:  418
+28. Uses at least one dynamically declared array Line:  440
+29. Uses at least one command line argument ** for the file name ** Line:  280
+32. Defines at least one class ** Animal Class ** Line:  335
+33. Uses at least one object ** Getting type from animal object ** Line:  393
+36. Attempts to use a pointer to a class ** smart pointer to animal class ** Line:  309
+37. Uses its own namespace ** Animal class is in the Zoo namespace Line:  312
+39. Uses at least one vector Line:  309
+40. Defines classes covering the use of default constructors ** Animal subclasses use default constructors Line:  689
+41. Demonstrates overloaded operators ** overloaded ostream in animal class ** Line:  49
+42. Uses some form of file IO Line:  49
+43. Uses other classes for some neat effects ** Used vectors, map, and shared_pointers ** Line:  0
+44. Uses inheritance ** Animal sub-types inherit from the animal class ** Line:  0
+45. Uses polymorphism  ** virtual ostream and getType functions for the sub classes of animal Line:  0
+46. Uses exceptions Line:  292
+
+No. of Requirements Met: 38/45

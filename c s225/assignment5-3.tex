@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+\everymath{\displaystyle}
+\begin{document}
+Assignment 5.3 - Jason Dorweiler\\
+
+Section 6.3: 6, 10, 12, 24, 26 ( 7th edition)\\
+
+\hrulefill\\
+
+6. $C(5,1) = \frac{5!}{1!(5-1)!} = \frac{5!}{1!*4!} = 5$\\
+
+$C(5,3) = \frac{5!}{3!(5-3)!} = \frac{5!}{1!*2!} = 10$\\
+
+$C(8,4) = \frac{8!}{4!(8-4)!} = \frac{8!}{4!*4!} = 70$\\
+
+$C(8,8) = \frac{8!}{8!(8-8)!} = \frac{8!}{8!*0!} = 1$\\
+
+$C(8,0) = \frac{8!}{0!(8-0)!} = \frac{8!}{0!*8!} = 1$\\
+
+$C(12,6) = \frac{12!}{6!(12-6)!} = \frac{12!}{6!*6!} = 924$\\
+
+\hrulefill\\
+
+10. There are six different candidates for governor of a state. In how many different orders
+can the names of the candidates be printed on a ballot?\\
+
+This is a list so the total is P(6,6) = 6! = 720\\
+
+\hrulefill\\
+
+12. How many bit strings of length 12 contain:\\
+
+a. Exactly three 1s?
+
+Only three of the 12 is C(12,3) = $\frac{12!}{3!(9!)} = 220$\\
+
+b. at most three 1s?
+
+This is the sum of C(12,0) + C(12,1) + C(12,2) + C(12,3) = $\frac{12!}{0!(12!)}+\frac{12!}{1!(11!)}+\frac{12!}{2!(10!)}+\frac{12!}{3!(9!)} = 1 + 12 + 66 + 220 = 299$\\
+
+c. At least three 1s?
+
+It's easier to just subtract from the total number of strings $2^{12}$.  The number of strings that don't have at least three 1s is $\frac{12!}{0!(12!)}+\frac{12!}{1!(11!)}+\frac{12!}{2!(10!)}$ so the total will be $2^{12} - \frac{12!}{0!(12!)}+\frac{12!}{1!(11!)}+\frac{12!}{2!(10!)} = 4096 - 79 = 4017$\\
+
+d. An equal number of 0s and 1s?
+
+Half of the bits will be set to either 0 or 1 so the total will be C(12,6) = $\frac{12!}{6!(6!)} = 924 $\\
+
+\hrulefill\\
+\newpage
+
+24. How many ways are there for 10 women and six men to stand in a line so that no two
+men stand next to each other?[
+Hint:
+First position the women and then consider possible
+positions for the men.]\\
+
+First to position the women it will take P(10,10) ways.  There will be a remaining 6 spots to place the men so another P(11,6).  The total will be P(10,10)*P(11,6) = 10!*$\frac{11!}{5!} = 1207084032000$\\
+
+\hrulefill\\
+
+26. Thirteen people on a softball team show up for a game. \\
+
+a. How many ways are there to choose 10 players to take the field?
+
+C(13,10) = $\frac{13!}{10!(3!)} = 286$\\
+
+b. How many ways are there to assign the 10 positions by selecting players from the 13
+people who show up? 
+
+P(13,10) = $\frac{13!}{3!} = 1037836800 $\\
+
+c. Of the 13 people who show up, three are women. How many ways are there to choose
+10 players to take the field if at least one of these players must be a woman?
+
+Since there are 3 women out of 13 people there is only one way to pick a team that does not have any women.  That is when all 10 men are picked.  So out of the total number of choices C(13,10) only one way is invalid.  The total is then C(13,10) -1 = 285
+
+\end{document}

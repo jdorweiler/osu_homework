@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1392045657 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\animal game\bst.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1391278006 c:\users\jason\dropbox\osu_classes\datastructs\as4\animal game\bst.h
+
+1392125661 c:\users\jason\dropbox\osu_classes\datastructs\as4\animal game\structs.h
+
+1392050369 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\animal game\compare.c
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392125587 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\animal game\main.c
+	<stdio.h>
+	<stdlib.h>
+	"bst.h"
+	"structs.h"
+	"assert.h"
+

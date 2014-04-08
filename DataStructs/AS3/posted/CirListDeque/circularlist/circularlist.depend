@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1391122588 source:c:\users\jason\dropbox\osu_classes\datastructs\as3\posted\cirlistdeque\cirlistdeque.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	<float.h>
+	"cirListDeque.h"
+
+1365181816 c:\users\jason\dropbox\osu_classes\datastructs\as3\posted\cirlistdeque\cirlistdeque.h
+
+1391369082 source:c:\users\jason\dropbox\osu_classes\datastructs\as3\posted\cirlistdeque\listdequetest.c
+	"cirListDeque.h"
+	<stdio.h>
+

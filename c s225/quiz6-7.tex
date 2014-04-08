@@ -1,0 +1,55 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+Jason Dorweiler CS225 Quiz6-7\\
+
+Question 1:
+a. $a_n = 5n-10$ recursive def: $a_{n+1} = 5(n+1)-10$ 
+
+= $a_{n+1} = a_n+5$ \\
+
+b. $a_n = n^2 -n$  = $a_{n+1} = (n+1)^2-(n+1)$ = $n^2+2n+1-n+1 $
+
+$= n^2-n+2n$ = $a_{n+1} = a_n + 2n$\\
+
+question 2:
+
+a. $S = \{x | x > 6 \,and\, odd\}$
+
+Basis: $7 \in S$
+
+Recursive: if $x \in S$ then $x+2 \in S$\\
+
+b. $S = \{ \lambda | length(\lambda) = even\}$ 
+
+Basis: $\lambda = 0 ,0 \in S$ this holds since 0 is even.
+
+Recursive: if $\lambda \in S$ then $\lambda +2 \in S$\\
+
+Question 3:
+
+Basis step: This holds for the basis step since $(0,1)$ and $(1,0)$ both give 0+1 
+
+= 1.\\
+
+Recursive step: 
+suppose that a+b=2k+1 where k is an integer
+
+ (a+1)+(b+1)= 2k+1 = a+b+2 = 2k+1 
+
+= a+b=2k+3 = a+b=2(k+1)+1 which shows that a+b is always an odd 
+
+integer. \\
+
+
+Question 5:
+
+a. You need to pick at least 9 balls
+
+b. 10 red + 20 green + 20 yellow = 50 balls + 3 blue.  So you would need 
+
+to pick 53
+\end{document}

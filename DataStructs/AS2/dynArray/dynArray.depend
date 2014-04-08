@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1391131603 source:c:\users\jason\dropbox\osu_classes\datastructs\as2\dynarray\testdynarray.c
+	<stdio.h>
+	<stdlib.h>
+	"dynamicArray.h"
+
+1392430248 c:\users\jason\dropbox\osu_classes\datastructs\as2\dynarray\dynamicarray.h
+	<math.h>
+
+1392430527 source:c:\users\jason\dropbox\osu_classes\datastructs\as2\dynarray\dynamicarray.c
+	<assert.h>
+	<stdlib.h>
+	"dynamicArray.h"
+

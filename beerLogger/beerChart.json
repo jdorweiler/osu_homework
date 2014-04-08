@@ -1,0 +1,46 @@
+[
+
+{"name":"Belgan Dark Strong","size":3938,"imports":[]},
+{"name":"American IPA","size":3938,"imports":[]},
+{"name":"American Pale Ale","size":3938,"imports":[]},
+{"name":"Kolsch","size":3938,"imports":[]},
+{"name":"Robust Porter","size":3938,"imports":[]},
+{"name":"Russian Imperial Stout","size":3938,"imports":[]},
+{"name":"Oatmeal Stout","size":3938,"imports":[]},
+
+
+{"name":"Amarillo","size":1938,"imports":["American Pale Ale", "Ahtanum", "Cascade", "Centennial"]},
+{"name":"Ahtanum","size":1938,"imports":["Amarillo", "Cascade", "Centennial"]},
+{"name":"Hallertauer","size":2938,"imports":["Belgan Dark Strong", "Kolsch"]},
+{"name":"Styrian Goldings","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Chinook","size":1938,"imports":["American IPA","Oatmeal Stout"]},
+{"name":"Citra","size":1938,"imports":["American IPA"]},
+{"name":"Cascade","size":1938,"imports":["American IPA", "Centennial", "Amarillo"]},
+{"name":"Centennial","size":1938,"imports":["American IPA", "Cascade"]},
+{"name":"Fuggles","size":1938,"imports":["Robust Porter", "Styrian Goldings", "Russian Imperial Stout","Oatmeal Stout"]},
+{"name":"Northern Brewer","size":1938,"imports":["Russian Imperial Stout"]},
+{"name":"Goldings","size":1938,"imports":["Russian Imperial Stout"]},
+
+
+
+{"name":"Chocolate Malt","size":1938,"imports":["Belgan Dark Strong", "Robust Porter", "Russian Imperial Stout","Oatmeal Stout"]},
+{"name":"Candi Sugar","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Special B","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Aromatic","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Biscuit","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Caramunich Malt","size":1938,"imports":["Belgan Dark Strong", "American Pale Ale"]},
+{"name":"Polsen","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"Aromatic","size":1938,"imports":["Belgan Dark Strong"]},
+{"name":"2 Row","size":1938,"imports":["American IPA", "American Pale Ale", "Kolsch", "Robust Porter", "Russian Imperial Stout","Oatmeal Stout"]},
+{"name":"Caramel/Crystal","size":1938,"imports":["American IPA", "Robust Porter", "Russian Imperial Stout"]},
+{"name":"Munich Malt","size":1938,"imports":["American Pale Ale", "Robust Porter"]},
+{"name":"Weat Malt","size":1938,"imports":["American Pale Ale"]},
+{"name":"Cara-Pils","size":1938,"imports":["Kolsch"]},
+{"name":"Vienna","size":1938,"imports":["Kolsch"]},
+{"name":"Black Patent","size":1938,"imports":["Robust Porter", "Russian Imperial Stout", "Oatmeal Stout"]},
+{"name":"Roasted Barley","size":1938,"imports":["Russian Imperial Stout"]},
+{"name":"Marris Otter","size":1938,"imports":["Oatmeal Stout"]},
+{"name":"Flaked Barley","size":1938,"imports":["Oatmeal Stout"]},
+{"name":"Oats","size":1938,"imports":["Oatmeal Stout"]}
+
+]

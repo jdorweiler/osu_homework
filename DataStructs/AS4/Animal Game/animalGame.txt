@@ -1,0 +1,24 @@
+Does it fly?,10000
+Does it have a tail?,8500
+Does it have feathers?,15000
+Does it have feathers?,4125
+Does it have fur?,7500
+Does it have Stripes?,1875
+Does it swim?,3750
+Is it a bird?,17500
+Is it a ferret?,9005
+Is it a fish?,4500
+Is it a flying squirrel?,14000
+Is it a penguin?,4312
+Is it a turtle?,4505
+Is it a zebra?,2812
+Is it some kind of cat or dog?,9510
+Is your animal a bear?,8000
+does it have hooves?,8752
+Is it a horse?,8878
+does it have very large ears?,8626
+Is it a rabbit?,8689
+Is it nocturnal?,13500
+Is it a bat?,13750
+Does it climb mountains?,8815
+Is it a mountain goat?,8846

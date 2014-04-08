@@ -1,0 +1,72 @@
+# depslib dependency file v1.0
+1392045657 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\bst.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392243037 "
+
+1391278006 c:\users\jason\dropbox\osu_classes\datastructs\as4\bst.h
+
+1391278008 c:\users\jason\dropbox\osu_classes\datastructs\as4\structs.h
+
+1392045592 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\compare.c
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392047787 source:c:\users\jason\dropbox\osu_classes\datastructs\as4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"bst.h"
+	"structs.h"
+
+1392232592 source:c:\users\jason\dropbox\osu_classes\datastructs\avl\compare.c
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392166485 c:\users\jason\dropbox\osu_classes\datastructs\avl\bst.h
+
+1391278008 c:\users\jason\dropbox\osu_classes\datastructs\avl\structs.h
+
+1392243144 source:c:\users\jason\dropbox\osu_classes\datastructs\avl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"bst.h"
+	"structs.h"
+
+1392243037 source:c:\users\jason\dropbox\osu_classes\datastructs\avl\bst.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392489295 source:/home/turtlebot/Desktop/Dropbox/OSU_classes/DataStructs/AVL/bst.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392166485 /home/turtlebot/Desktop/Dropbox/OSU_classes/DataStructs/AVL/bst.h
+
+1391278008 /home/turtlebot/Desktop/Dropbox/OSU_classes/DataStructs/AVL/structs.h
+
+1392232592 source:/home/turtlebot/Desktop/Dropbox/OSU_classes/DataStructs/AVL/compare.c
+	<stdio.h>
+	<assert.h>
+	"bst.h"
+	"structs.h"
+
+1392243144 source:/home/turtlebot/Desktop/Dropbox/OSU_classes/DataStructs/AVL/main.c
+	<stdio.h>
+	<stdlib.h>
+	"bst.h"
+	"structs.h"
+

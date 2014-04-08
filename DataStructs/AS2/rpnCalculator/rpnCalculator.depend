@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1390515362 source:c:\users\jason\dropbox\osu_classes\datastructs\as2\rpncalculator\calc.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"dynamicArray.h"
+	<assert.h>
+
+1358378386 c:\users\jason\dropbox\osu_classes\datastructs\as2\rpncalculator\dynamicarray.h
+	<math.h>
+
+1390515420 source:c:\users\jason\dropbox\osu_classes\datastructs\as2\rpncalculator\dynamicarray.c
+	<assert.h>
+	<stdlib.h>
+	"dynamicArray.h"
+

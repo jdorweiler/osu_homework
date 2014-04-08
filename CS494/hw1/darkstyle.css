@@ -1,0 +1,10 @@
+html {background-color: #999999;}
+h1 {color: #4079B2;}
+body, th, td, li {font-family: sands-serif; color: #D6D6D6;}
+ul{list-style-type: none;}
+table {border-left: 1px solid #D6D6D6; background-color:#999999; border-collapse: collapse;}
+td {border-right: 1px solid #D6D6D6; background-color:#999999; width: 130px; text-align: center;}
+tr {border: solid; border-width: 1px 0;}
+.colorCell {background-color:#4079B2;}
+li:hover {background-color:#ff00ff;}
+

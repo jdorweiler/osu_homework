@@ -1,0 +1,9 @@
+html {background-color: #EEEEEE;}
+h1 {color: #52CC52;}
+body, th, td, li {font-family: sands-serif;}
+ul{list-style-type: none;}
+table {border-left: 1px solid; background-color:#EEEEEE; border-collapse: collapse;}
+td {border-right: 1px solid; background-color:#EEEEEE; width: 130px; text-align: center;}
+tr {border: solid; border-width: 1px 0;}
+.colorCell {background-color:#ff0023;}
+li:hover {background-color:#ff00ff;}

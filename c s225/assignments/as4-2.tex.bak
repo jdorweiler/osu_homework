@@ -1,0 +1,26 @@
+\documentclass[10pt]{article}
+\begin{document}
+a. $ S = \{(a,b)|a \in Z^+ , a \in Z^+, and\; a+b \; is \;odd \} $ \\
+
+Basis step: $(1,2) \in \; S$, since this is the first case of a,b 
+
+where $(a,b) = odd$.\\
+
+Recursive Step:
+
+$(a,b) \in \; S$ then $(a,b+2) \in \; S$ and $(a+2,b) \in \; S$, and $(a+1,b+1) \in \; S$
+
+This shows that any $(a,b)$ will give and odd sum.\\
+
+32 a.
+
+Base case: $\lambda$ = empty string, $f(\lambda)=0$
+
+Recursive Case:
+
+$\sum =\,\{0,1\}$
+
+If $x \in \sum$ and $w \in \sum^*$ where $\sum^*$ is the set of strings over the alphabet. 
+
+Then the function $ones(x*w)$ = $ones(w) + x$ and x is a single bit.
+\end{document}
