@@ -38,7 +38,7 @@ def main(argv):
 
 	# make symbolic links
 	link1 = "/usr/local/classes/eecs/"+term+'/'+class_name+'/src/README'
-	link2 = "/usr/local/classes/eecs/"+term+'/'+class_name+'/src/src'
+	link2 = "/usr/local/classes/eecs/"+term+'/'+class_name+'/src'
 	
 	processCommand(shlex.split("ln -s "+link1+" README"))
 	processCommand(shlex.split("ln -s "+link2+" src_class"))	
