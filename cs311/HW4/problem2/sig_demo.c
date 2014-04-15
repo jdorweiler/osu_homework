@@ -24,7 +24,7 @@ static void sigHandler(int sig){
 	}
 }
 
-void main(int argc, char **argv){
+int main(int argc, char **argv){
 	// sig handler for SIGINT
 	if(signal(SIGINT, sigHandler) == SIG_ERR){
 		exit(EXIT_FAILURE);
@@ -45,4 +45,5 @@ void main(int argc, char **argv){
 	// SIGUSR1
 	kill(getpid(), SIGINT);
 
+	return 0;
 }
