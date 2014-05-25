@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+CS494 - Assignment 2 - Ajax
+Jason Dorweiler
+01-31-2014
+This page gets JSON data from the requested 
+page on Reddit.com.  It get the top images from
+the last month, checks to see that the url ends
+in .jpg and then displays the top 8 images. 
+Sometime an image will show up broken due to the actual
+file being deleted on the url that is returned.  Not really 
+sure how to handle that but it seems somewhat rare.  
+-->
+<head>
+<script src="jquery-1.10.2.min.js"></script>
+<style>
+body{background-color: rgb(25,102,153);}
+div.otherPage{border:2px solid;}
+</style>
+<meta charset="utf-8">
+<title>Basic AJAX</title>
+</head>
+<body>
+<H1>Basic AJAX</H1>
+select a Reddit page from the menu to show the top 8 images from this month. <br>
+<select id="dropDown">
+  <option value="http://www.reddit.com/r/kittens/top.json?sort=top&amp;t=month">Kittens</option>
+  <option selected="selected" value="http://www.reddit.com/r/aww/top.json?sort=top&amp;t=month">AWW</option>
+  <option value="http://www.reddit.com/r/puppies/top.json?sort=top&amp;t=month">Puppies</option>
+  <option value="http://web.engr.oregonstate.edu/~dorweilj/error">Error Page</option>
+</select> 
+<input type="button" value="Get Results" id="clickme" onclick="startAjax(document.getElementById('dropDown').value)">
+<div id="message" ></div><br>
+<div class="otherPage" id="otherPage">Other Page Content <br>
+<img id="result1" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result2" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result3" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result4" height="250" width="250" src="JavaScript:void(0)" alt=""><br>
+<img id="result5" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result6" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result7" height="250" width="250" src="JavaScript:void(0)" alt="">
+<img id="result8" height="250" width="250" src="JavaScript:void(0)" alt="">
+</div>
+<script>
+
+$(document).ready(startAjax(document.getElementById('dropDown').value));
+
+function startAjax(page){
+	$("#message").show();
+	$("#message").text("Calling Server");
+	$.ajax({url:page,
+		success: callbackFunction, error: errorFunction, dataType:'json'}
+	);
+}
+ 
+function callbackFunction(data, info){
+	$("#otherPage").show();
+	var position = 1;
+	for(var i = 1; i < data.data.children.length; i++){
+		var page  = data.data.children[i].data;
+		// only find links ending with jpg
+		while(!~page.url.indexOf('jpg')){
+			i++;
+			// check this so we don't access elements that don't exist.
+			if(i < data.data.children.length){ 
+				page = data.data.children[i].data;
+			}
+			else{
+				break;
+			}
+		}
+		$("#result"+position).attr('src', page.url);
+		$("#result"+position).attr('title', page.title);
+		
+		position++;
+	}
+	$("#message").hide();
+}
+
+function errorFunction(data, textStatus, thrownError){
+	$("#otherPage").hide();
+	$("#message").append('<div id="message"> <table><tr>'
+		+'<td> The requested page was: ['
+		+ document.getElementById("dropDown").value 
+		+ ' ]</td></tr><tr><td>'
+		+ 'The error reported was ' + data.status
+		+'</td></tr><tr><td>'
+		+ 'The error message:' + data.statusText
+		+ '</table></div>'
+		
+	);
+}
+</script>
+</body></html>

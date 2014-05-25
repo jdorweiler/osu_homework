@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\title{CS225 Midterm Review}
+\setlength\parindent{0pt}
+\author{Jason}
+\begin{document}
+\maketitle
+
+Section 1.7\\
+
+1. Use a direct proof to show that the sum of two odd integers
+is even.
+
+$n_1+n_2 = odd$ when n is an integer.
+
+$n_1 = 2k_1+1, n_2 = 2k_2+1$
+
+$2k_1+1+2k_2+1$
+
+$2*(k_1+k_2+1)$ def of even number. \\
+
+3. Show that the square of an even number is an even number
+using a direct proof.
+
+$n^2$ is even.
+
+$n = 2k$ 
+
+$(2k)^2 = 2*(2k^2)$ definition of even number\\
+
+6. Use a direct proof to show that the product of two odd
+numbers is odd.
+
+$(2k_1+1)*(2k_2+1)$
+
+$4*k_1k_2+2k_1+2k_2+1$
+
+$2(2k_1k_2+k_1+k_2) +1$ definition of odd number.\\
+
+14. Prove that if x is rational and x = 0, then 1/x is rational.
+
+x is rational so $x= \frac{a}{b}$, where a and b are integers. 
+
+$\displaystyle{\frac{1}{\frac{a}{b}} = \frac{b}{a}}$ which is also rational.  \\
+
+18. Prove that if n is an integer and 3n + 2 is even, then n is
+even using
+
+a) a proof by contraposition.
+
+If n is odd, then $3n+2$ is odd.
+
+n = 2k+1
+
+$3*(2k+1)+2 = 6k+5 = 2*(3k+2)+1$\\
+
+b) a proof by contradiction.
+
+Assume for contradiction that n is odd, $n=2k+1$.
+
+$3*(2k+1)+2 = 6k+5 = 2*(3k+2)+1$ which says that $3*n+2$ is odd which is a contradiction. \\
+
+8. Prove that if n is a perfect square, then n + 2 is not a
+perfect square.
+
+Using proof by contradicion. Assume that n+2 is a perfect square.  
+
+$n+2 = k*k$
+
+$n = kk+2$ so n is not a perfect square.  This is a contradiction to our assumption. \\
+
+\hrulefill\\
+
+\textbf{Set Notation}\\
+
+Sets are unordered collections of objects. \\
+
+O is the set of all odd positive integers less than 10. 
+
+$O = \{x \in Z^+ | x\,is\,odd\,and\,x < 10\}$ \\
+
+Two sets are equal if and only if they have the same elements. Therefore, if A and B are sets,
+then A and B are equal if and only if $\forall x (x \in A \leftrightarrow x \in B)$. We write A = B if A and B are
+equal sets.\\
+
+The set A is a subset of B if and only if every element of A is also an element of B. We use
+the notation $A \subseteq B$ to indicate that A is a subset of the set B.\\
+
+Theorem 1 shows that every nonempty set S is guaranteed to have at least two subsets, the
+empty set and the set S itself, that is, $ \emptyset \subseteq S$ and $S \subseteq S$
+
+\hrulefill\\
+
+\textbf{Set Operations}\\
+
+16. Let a and b be sets. show:
+
+a. $(A \cap B) \subseteq A$
+
+suppose $x \in (A \cap B)$ then $x \in A, x \in B$ since $x \in A$ we can conclude that it's true. \\
+
+b. $A \subseteq (A \cup B)$
+
+Suppose that $x \in A$ then it follows that $x \in A$ or $x \in B$ and so it's true.
+
+c. $A - B \subseteq A$
+
+suppose that $x \in (A - B)$ then it follows that $x \in A$ and $x \notin B$ 
+
+d. $A \cap (B-A) = \emptyset$
+
+Proof by contradiction. Assume that $A \cap (B-A) \neq \emptyset$ and  $x \in A \cap (B-A)$ it follows that $x \in A$ and $x \in B, x \notin A$ which is a contradiction. 
+
+e. $A \cup (B-A) = A \cup B$
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+A & B & $\neg A$ & (B-A) & $A \cup (B-A)$ & $A \cup B$ \\ 
+\hline 
+1 & 1 & 0 & 0 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 0 \\ 
+\hline
+\end{tabular}\\
+
+
+18. a. $(A \cup B) \subseteq (A \cup B \cup C)$
+
+These are all pretty much the same. 
+
+1. assume x is an element of the left hand side. Break it down into each element and come to a conclusion. 
+
+2. if it proving something is NULL then use contradiciton. 
+
+3. if something  =  something else just use a table. \\
+
+\textbf{Quiz 4 questions}\\
+
+4. Let A: the set of all red cars
+
+B: the set of all fast cars. 
+
+The set of all caars that are neither red nor fast. 
+
+$\neg A \cap \neg B$\\
+
+
+5. Prove: $A - B \subseteq \overline{B}$
+
+Suppose that $x \in (A-B)$. Then $x\in A$ and $x \notin B$. Since $x \notin B$ it follows that  $A - B \subseteq \overline{B}$ is true.\\
+
+\hrulefill
+
+\textbf{Sums and Sequences}\\
+
+29.\\
+$\sum_{k=1}^{5} (k+1) = 1+1 + 2+1 + 3+1 +4+1 + 5+1 = 20$\\
+
+$\sum_{j=0}^{4} (-2)^j = \frac{(-2)^{4+1}-1}{(-2)-1}$\\
+
+$\sum_{i=1}^{10} 3 = 3*10 = 30$\\
+
+$\sum_{j=0}^{8} (2^{j+1}-2^j) = \sum_{j=0}^{8} 2^{j} = \frac{(2)^{8+1}-1}{(2)-1}$\\
+
+31.\\
+$\sum_{j=0}^{8} 3*2^j = 3*\frac{(2)^{8+1}-1}{(2)-1}$\\
+
+$\sum_{j=1}^{8} 2^j = \frac{(2)^{8+1}-1}{(2)-1} - 1$\\
+
+$\sum_{j=2}^8 (-3)^j = \frac{(-3)^{8+1}-1}{(-3)-1} - \frac{(-3)^{1+1}-1}{(-3)-1} $\\
+
+$\sum_{j=0}^8 2 \cdot(-3)^j = 2* \frac{(-3)^{8+1}-1}{(-3)-1}$\\
+
+32.\\
+$\sum_{j=0}^8 (1+(-1)^j) = \sum_{j=0}^8 1+\sum_{j=0}^8(-1)^j$\\
+
+\hrulefill\\
+
+\textbf{Weak Induction}\\
+
+General method to complete proofs:
+
+Step 1: Show that the basis P(0) or P(1) is true.  Sometimes you need to read the problem to see what the basis is.  It is not always 0 or 1. 
+
+Step 2: Substitute k in for n or whatever variable there is. On both sides of the equation. 
+
+Step 3: add k+1 to the right side. 
+
+Step 4:  Do math and show that it is equal to step 2.\\
+
+Ex:
+
+$1*1!+2*2!....n*n! = (n+1)!-1$
+
+Basis: 0*0 = 1-1 = 0
+
+Inductive:
+
+$k*k! = (k+1)! - 1$
+
+$k*k!+(k+1)*(k+1)! = (k+1+1)! -1 + (k+1)*(k+1)!$
+  
+\end{document}

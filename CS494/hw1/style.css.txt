@@ -1,0 +1,3 @@
+body, th, td, li {font-family: sands-serif}
+table {border: 1px solid black; background-color:#ffffffaa;}
+th {font-weight: bold;}

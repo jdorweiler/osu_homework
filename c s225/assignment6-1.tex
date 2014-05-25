@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+\everymath{\displaystyle}
+
+\begin{document}
+Jason Dorweiler
+
+Assignment 6.1\\
+ 
+Section 10.1: 24a, 28; Section 10.2: 6, 16, 18 (think about Pigeons), 26 a, b, c (think about colorings) (7th edition)\\
+
+\textbf{24.a)} Explain how graphs can be used to model electronic mail messages in a network. Should
+the edges be directed or undirected? Should multiple edges be allowed? Should loops be
+allowed?\\
+
+Each node could represent the sender, receiver, and edges would represent the email being sent.  This graph could have many directed edges since one person can send  multiple messages to other nodes.  There could also be multiple edges since one person can send several emails to another.  Loops are also allowed since someone can send themselves an email. \\
+
+
+\textbf{28.)} Describe a graph model that represents a subway system in a large city. Should edges
+be directed or undirected? Should multiple edges be allowed? Should loops be allowed?  \\
+
+The subway system would be a directed graph with each stop representing a node and the edges representing the tracks connecting each stop.  The graph could have multiple edges since a stop could connect to several stops.  Loops probably wouldn't be very useful. \\
+
+\textbf{6.)} Show that the sum, over the set of people at a party, of the number of people a person
+has shaken hands with, is even. Assume that no one shakes his or her own hand.\\
+
+This can be represented as a undirected graph with each person being a node and a handshake being the edges.  The sum of the number of people a person has shaken hands with is $\displaystyle{\sum_{v \in V} deg(v)}$  From the handshake theorem we know that $\displaystyle{\sum_{v \in V} deg(v)} = 2e$  which is always even. \\
+
+\textbf{16.)} What do the in-degree and the out-degree of a vertex in the Web graph, as described in
+Example 8 of Section 9.1, represent?\\
+
+The in-degree would represent the number of links pointing to webpage A and the out-degree would be the number that A points to. \\
+
+\textbf{18.)} Show that in a simple graph with at least two vertices there must be two vertices that
+have the same degree\\
+
+Assume for contradiction that a graph with two vertices v and u, vertex u has degree 0 and vertices can have different degrees.  Then vertex v must have V-1 edges which implies that u and v are connected.  This contradicts our assumption that u has degree 0. From the pigeon hole principle we know that if there are V vertices in the graph then two of them have to have the same degree. \\
+
+\textbf{26.)} For which values of n are these graphs bipartite?\\
+
+a. $K_n$  this graph is only bipartite for n=1 and n=2.  Any n>3 can't have a two colouring which doesn't have a color connected to a vertex of the same color. \\
+
+b. $C_n$  The only way to do a two colouring is when the graph has an even number of vertices.\\
+
+b. $W_n$ There is no way to do a two colouring of this type of graph.  There will always be two vertices of the same color connected. 
+
+\hrulefill\\
+
+Assignment: Section 10.4: 12 (a,b,c), 16(7th edition)\\
+
+\textbf{12.)} Determine whether each of these graphs is strongly connected and if not, whether it is
+weakly connected.\\
+
+a. This one is not strongly connected.  For example, there is no path from (a,c).  The graph is weakly connected since there is a path between every node when you ignore direction. \\
+
+b. This graph is strongly connected.  There is a path from each node to another. \\
+
+c. This graph is not strongly connected, no path from (b,g) and also not weakly connected no path from (b,g).\\
+
+\textbf{16.)} Show that all vertices visited in a directed path connecting two vertices in the same
+strongly connected component of a directed graph are also in this strongly connected component.\\
+
+two vertices u and v in a directed graph are connected. If these vertices are in a strongly connected component of a directed graph then by definition there is a path from u to any other vertex and from v to any other vertex.  Since these vertices are strongly connected to u and v we can say that they are also in the same component. 
+\end{document}
+

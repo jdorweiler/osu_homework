@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1390626080 source:c:\users\jason\dropbox\osu_classes\datastructs\ws18\linkedlistqueue.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+

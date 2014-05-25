@@ -1,0 +1,266 @@
+Sorting with 1
+Sorting with 1
+Sorting with 1
+word: a number: 48
+word: a number: 7
+word: about number: 1
+word: adjective number: 2
+word: after number: 1
+word: aleph number: 2
+word: all number: 1
+word: almost number: 1
+word: alpha number: 2
+word: alphabet number: 1
+word: alphabets number: 2
+word: also number: 1
+word: also number: 1
+word: an number: 7
+word: an number: 2
+word: and number: 14
+word: and number: 1
+word: any number: 1
+word: anyone number: 1
+word: anywhere number: 1
+word: are number: 1
+word: article number: 1
+word: articulation number: 1
+word: as number: 7
+word: at number: 4
+word: august number: 1
+word: author number: 1
+word: away number: 1
+word: b number: 1
+word: before number: 5
+word: beginning number: 2
+word: besides number: 1
+word: between number: 2
+word: birth number: 1
+word: black number: 1
+word: blow number: 1
+word: borrowed number: 1
+word: both number: 1
+word: breath number: 1
+word: but number: 1
+word: by number: 3
+word: c number: 1
+word: called number: 1
+word: capital number: 1
+word: century number: 1
+word: certain number: 1
+word: chaucer number: 1
+word: collective number: 1
+word: color number: 1
+word: commonly number: 2
+word: comparatively number: 1
+word: consonant number: 2
+word: consonants number: 1
+word: copy number: 1
+word: cost number: 1
+word: creseide number: 1
+word: date number: 1
+word: day number: 1
+word: days number: 1
+word: defn number: 5
+word: denoting number: 1
+word: descended number: 1
+word: dictionary number: 2
+word: dictionary number: 1
+word: different number: 1
+word: dog number: 1
+word: dollar number: 1
+word: each number: 2
+word: early number: 1
+word: ebook number: 5
+word: egyptian number: 1
+word: element number: 1
+word: emph number: 1
+word: emphatically number: 1
+word: english number: 3
+word: english number: 1
+word: etc number: 4
+word: etym number: 3
+word: eulogy number: 1
+word: euphony number: 1
+word: europe number: 1
+word: ewe number: 1
+word: exception number: 1
+word: fair number: 1
+word: far number: 1
+word: fate number: 1
+word: few number: 1
+word: few number: 1
+word: first number: 2
+word: first number: 1
+word: flat number: 1
+word: fleet number: 1
+word: flower number: 1
+word: for number: 6
+word: form number: 2
+word: formally number: 1
+word: forms number: 1
+word: from number: 3
+word: from number: 1
+word: g number: 1
+word: give number: 1
+word: good number: 1
+word: graham number: 1
+word: great number: 2
+word: greece number: 1
+word: greek number: 2
+word: greeks number: 1
+word: guide number: 1
+word: gutenberg number: 4
+word: guttural number: 1
+word: h number: 1
+word: has number: 1
+word: having number: 1
+word: house number: 1
+word: hundred number: 1
+word: hundred number: 1
+word: in number: 11
+word: in number: 1
+word: included number: 1
+word: indefinite number: 1
+word: individual number: 1
+word: individualized number: 1
+word: intermediate number: 2
+word: interposed number: 1
+word: is number: 10
+word: it number: 7
+word: italic number: 1
+word: itself number: 2
+word: l number: 1
+word: language number: 1
+word: languages number: 1
+word: latin number: 1
+word: lawrence number: 1
+word: leagues number: 1
+word: less number: 1
+word: letter number: 6
+word: license number: 1
+word: long number: 1
+word: made number: 1
+word: major number: 1
+word: man number: 1
+word: many number: 4
+word: may number: 1
+word: middle number: 1
+word: minor number: 2
+word: model number: 1
+word: modern number: 1
+word: most number: 1
+word: mus number: 1
+word: musical number: 1
+word: name number: 3
+word: named number: 2
+word: net number: 1
+word: no number: 2
+word: no number: 1
+word: nonesuch number: 1
+word: not number: 1
+word: note number: 1
+word: nouns number: 3
+word: number number: 1
+word: o number: 1
+word: object number: 1
+word: obs number: 1
+word: of number: 23
+word: of number: 1
+word: old number: 1
+word: on number: 1
+word: one number: 5
+word: oneness number: 1
+word: online number: 1
+word: or number: 7
+word: or number: 1
+word: origin number: 1
+word: originally number: 1
+word: other number: 2
+word: part number: 1
+word: per number: 3
+word: persons number: 1
+word: phoenician number: 1
+word: phrase number: 1
+word: place number: 1
+word: placed number: 1
+word: plural number: 1
+word: pounds number: 1
+word: preminent number: 1
+word: preposition number: 1
+word: produced number: 1
+word: project number: 3
+word: pronunciation number: 1
+word: quality number: 2
+word: re number: 1
+word: regiment number: 1
+word: regular number: 1
+word: release number: 1
+word: represent number: 1
+word: restrictions number: 1
+word: s number: 3
+word: sake number: 1
+word: same number: 1
+word: scale number: 3
+word: se number: 3
+word: second number: 1
+word: see number: 3
+word: several number: 1
+word: shak number: 1
+word: sharp number: 1
+word: shortened number: 1
+word: signifying number: 1
+word: singular number: 1
+word: sixth number: 1
+word: small number: 1
+word: sound number: 5
+word: sounds number: 1
+word: staff number: 1
+word: start number: 1
+word: string number: 1
+word: such number: 1
+word: sweetness number: 1
+word: symbols number: 1
+word: table number: 1
+word: taken number: 1
+word: terms number: 1
+word: th number: 1
+word: that number: 2
+word: the number: 42
+word: the number: 2
+word: their number: 1
+word: this number: 5
+word: till number: 1
+word: title number: 1
+word: to number: 4
+word: tone number: 4
+word: took number: 1
+word: treble number: 1
+word: troy number: 1
+word: tuned number: 1
+word: twenty number: 1
+word: unabridged number: 3
+word: under number: 1
+word: unit number: 1
+word: use number: 2
+word: used number: 3
+word: various number: 2
+word: violin number: 1
+word: vowel number: 3
+word: vowels number: 1
+word: was number: 5
+word: was number: 1
+word: webster number: 3
+word: western number: 1
+word: what number: 1
+word: whatsoever number: 1
+word: when number: 1
+word: which number: 2
+word: with number: 5
+word: with number: 1
+word: woman number: 1
+word: word number: 1
+word: words number: 2
+word: www number: 1
+word: yard number: 1
+word: year number: 2
+word: you number: 1

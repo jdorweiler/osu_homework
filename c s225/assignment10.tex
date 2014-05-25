@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+\everymath{\displaystyle}
+
+\begin{document}
+Jason Dorweiler - Assignment 6.4
+
+Assignment: Section 9.6: 8 (a,b,c,d), 14, 18 (explain your answer)\\
+
+
+8. Find a shortest path(in mileage) between each of the following pairs of cities in the airline
+system shown in Figure 1.
+
+a. New York and Los Angeles
+
+The table below shows the progression following  Dijkstra's  algorithm starting from NY and ending at LA.  The shortest path is NY to LA 2451 miles. 
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+Start: NY & Boston & Chicago & Atlanta & Miami & Denver & San Fran & LA & New Node \\ 
+\hline 
+L1 & 191 & 722 & 760 & 1090 & $\infty$ & 2534 & 2451 & • \\ 
+\hline 
+L2 & 191 & 722 & 760 & 1090 & $\infty$ & 2534 & 2451 & Boston \\ 
+\hline 
+L3 & 191 & 722 & 760 & 1090 & 1630 & 2534 & 2451 & Chicago \\ 
+\hline 
+L4 & 191 & 722 & 760 & 1090 & 1630 & 2534 & 2451 & Atlanta \\ 
+\hline 
+L5 & 191 & 722 & 760 & 1090 & 1630 & 2534 & 2451 & Denver \\ 
+\hline 
+L6 & • & • & • & • & • & • & 2451 & LA \\ 
+\hline 
+\end{tabular} \\
+
+
+b) Boston and San Francisco
+
+From the table below the shortest path is from Boston-Chicago-SanFran
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+Start Boston & NY & Chicago & Atlanta & Miami & Denver & San Fran & LA & New Node \\ 
+\hline 
+L1 & 191 & 860 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & • \\ 
+\hline 
+L2 & 191 & 860 & 951 & 1281 & $\infty$ & 2725 & 2642 & NY \\ 
+\hline 
+L3 & 191 & 860 & 951 & 1281 & 1768 & 2715 (Chi) & 2642 & Chicago \\ 
+\hline 
+L4 & 191 & 860 & 951 & 1281 & 1768 & 2715 (Chi) & 2642 & Atlanta \\ 
+\hline 
+L5 & 191 & 860 & 951 & 1281 & 1768 & 2715 (Chi) & 2642 & Miami \\ 
+\hline 
+L6 & 191 & 860 & 951 & 1281 & 1768 & 2715 (Chi) & 2642 & Denver \\ 
+\hline 
+L7  & 191 & 860 & 951 & 1281 & 1768 & 2715 (Chi) & 2642 & LA \\ 
+\hline 
+\end{tabular} \\
+
+c) Miami and Denver
+
+From the table below the shortest path is from Miami-Atlanta-Chicago-Denver
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+Start Miami & NY & Chicago & Atlanta & Boston & Denver & San Fran & LA & New Node \\ 
+\hline 
+L1 & 1090 & $\infty$ & 595 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & • \\ 
+\hline 
+L2 & 1090 & 1201 & 595  & $\infty$ & $\infty$ & $\infty$ & $\infty$ & Atlanta \\ 
+\hline
+L3 & 1090 & 1201 & 595  & 1281 & $\infty$ &
+3624 & 3541 & NY \\ 
+\hline
+L4 & 1090 & 1201 & 595  & 1281 & 2019 &
+3624 & 3541 & Chicago \\ 
+\hline
+L5 & 1090 & 1201 & 595  & 1281 & 2109 &
+3056 (boston) & 3541 & Boston \\ 
+\hline
+\end{tabular} \\
+
+
+d) Miami and Los Angeles
+
+From the table below the shortest path is from Miami-Atlanta-Chicago-Denver-LA
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+Start Miami & NY & Chicago & Atlanta & Boston & Denver & San Fran & LA & New Node \\ 
+\hline 
+L1 & 1090 & $\infty$ & 595 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & • \\ 
+\hline 
+L2 & 1090 & 1201 & 595  & $\infty$ & $\infty$ & $\infty$ & $\infty$ & Atlanta \\ 
+\hline
+L3 & 1090 & 1201 & 595  & 1281 & $\infty$ &
+3624 & 3541 & NY \\ 
+\hline
+L4 & 1090 & 1201 & 595  & 1281 & 2019 &
+3624 & 3541 & Chicago \\ 
+\hline
+L5 & 1090 & 1201 & 595  & 1281 & 2109 &
+3056 (boston) & 3541 & Boston \\ 
+\hline
+L6 & 1090 & 1201 & 595  & 1281 & 2109 &
+3056 (boston) & 2943 (denver) & Denver \\ 
+\hline
+\end{tabular} \\
+
+\newpage
+
+14. Explain how to find a path with the least number of edges between two vertices in an
+undirected graph by considering it as a shortest path problem in
+a weighted graph.\\
+
+By ignoring the edge weights (or setting them to 1) you can use Dijkstra's algorithm to find the shortest path with will then be the one with the least number of edges. \\
+
+18. Is a shortest path between vertices in a weighted graph unique if the weights of edges
+are distinct?\\
+
+This is not true.  The weights of all of the edges can be distinct but there could still be more than one path through the graph that has the same minimum sum of edge weights. 
+\end{document}
+

@@ -1,0 +1,20 @@
+main pid: 5761
+Sorting with 3
+sort pid: 5761
+sort pid: 5761
+sort pid: 5761
+parser pid: 5761
+main pid: 5761
+Sorting with 3
+word: a number: 6
+word: b number: 6
+word: c number: 6
+main pid: 5761
+Sorting with 3
+sort pid: 5761
+main pid: 5761
+Sorting with 3
+sort pid: 5761
+sort pid: 5761
+sort pid: 5761
+parser pid: 5765

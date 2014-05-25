@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+Question 15:\\
+
+for(int i = 0; i $<$ 17; ++i)$\{$
+
+
+    data[6][i] = 11 + i;
+    
+    
+$\}$ \\
+
+
+Question 16:\\
+
+I'm not sure if this is asking for a dynamic or static array so I did both. \\
+
+\textbf{Solution using a static array:}
+
+int main() $\{$\\
+
+int array[5][10] = $\{ \}$;\\
+
+for(int rows = 0; rows $<$ 5; ++rows) $\{$\\
+
+\indent \indent for(int cols = 0; cols $<$ 10; ++cols) $\{$ \\
+
+\indent \indent \indent \indent array[rows][cols] = (((rows+2)+rows))*((cols+2)+cols)));
+
+\indent \indent $\}$
+
+\indent \indent $\}$
+
+$\}$\\
+
+\textbf{Solution using a dynamic array:}
+
+int main() $\{$\\
+
+int **array;\\
+
+int rows = 5;\\
+
+int cols = 10;\\
+
+array = new int*[rows];\\
+
+
+for(int i = 0; i $<$ 10; ++i) $\{$\\
+
+array[i] = new int[cols];
+
+$\}$\\
+
+for(int rows = 0; rows $<$ 5; ++rows) $\{$\\
+
+\indent \indent for(int cols = 0; cols $<$ 10; ++cols) $\{$ \\
+
+\indent \indent \indent \indent array[rows][cols] = (((rows+2)+rows))*((cols+2)+cols)));
+
+\indent \indent $\}$
+
+\indent \indent $\}$
+
+$\}$\\
+
+Question 17:\\
+
+question 1 public variables can still be changed outside of a class. \\
+
+question 11 $f.iFun()$ returns void not int so this is illegal. \\
+
+question 12: f.sFun() is private so you cant use it this way. \\
+
+question 13 both $my count$ and times need to be passed to the function 
+
+by address ($\& my count, \& times)$ otherwise the changes will not be sent 
+
+back to main.\\
+
+\end{document}

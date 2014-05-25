@@ -1,0 +1,115 @@
+<!DOCTYPEhtml><html><head>
+<style>body{background-color: #AAC9FA;}
+        div.container{border:2px solid;}
+</style>
+<script src="jquery-1.10.2.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="width: 400px; height: 300px;"></div>Set Point:
+<input type="text" id="setPoint" value="68" />
+<input type="button" id="setPtButton" value="setpoint" />
+<br>This just plots random data around 68F.  The setpoint line can be <br>
+moved around and would provide feedback to a PID controller.<br>
+<script>
+$(document).ready(function() {
+
+    $("#setPtButton").click(function() {
+        var chart = Highcharts.charts[0];
+        chart.yAxis[0].removePlotLine('setline');     
+        chart.yAxis[0].addPlotLine({
+                value: $('#setPoint').val(),
+                color: 'red',
+                width: 2,
+                id: 'setline',
+                dashStyle : 'longdash'
+         });
+    });
+    
+    Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+    
+       var plot = $('#container').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                backgroundColor:'rgba(255, 255, 255, 0.5)',
+                events: {
+                    load: function() {
+    
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+                            var x = (new Date()).getTime(), // current time
+                                y = Math.random()%1+67.5;
+                            series.addPoint([x, y], true, true);
+                        }, 2000);
+                    }
+                }
+            },
+            title: {
+                text: 'Fermenter Temp'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 1500
+            },
+            yAxis: {
+                title: {
+                    text: 'Fermenter Temp <sup>o</sup>F'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }, {
+                    value : 68,
+                    color : 'red',
+                    dashStyle : 'longdash',
+                    width : 2,
+                    id: 'setline',
+                    label : {
+                        text : 'Set Point'
+                    }   
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 1);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Random data',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+    
+                    for (i = -40; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: 68
+                        });
+           
+                    }
+                    return data;
+                })()
+            }]
+        });
+    });
+</script>
+</body>
+</html>

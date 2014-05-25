@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+CS494 - Assignment 2 - Local Storage
+Jason Dorweiler
+01-31-2014
+Load a number into local storage or cookie based
+on browser preferances.  
+Validate the input is a number
+-->
+<head>
+<meta charset="utf-8">
+<title>Local Storage</title>
+<script src="jquery-1.11.1.js"></script>
+<script src="jquery.cookie.js"></script>
+<script src="jquery.validate.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#frm").validate();
+		load(); //load the number to the div
+	});
+	
+	function store(number){
+		//Validation works but it still tries to store invalid 
+		//data.  So check if it is a number and that the number 
+		//exists.  This takes care of blank data and junk data.
+		if(!isNaN(number) && number){
+			if(!window["localStorage"]){
+				$("#output").text("Output: Local Storage is disabled, writing cookie instead");
+				$.cookie("userNumber", number,{expiers:1});
+			}
+			else{
+				localStorage["userNumber"] = number;
+			}
+			
+		}
+	}
+	
+	function load(){
+		if(!window["localStorage"]){
+			var number = $.cookie("userNumber");
+		}
+		else{
+			var number = localStorage["userNumber"];
+		}
+		if(isNaN(number)){
+			$("#output").text("Output: No number found");
+		}
+		else{
+			$("#output").text("Output: "+number);
+		}
+	}
+	
+	function erase(){
+		if(!window["localStorage"]){
+			$.cookie("userNumber",{expiers:-1});
+		}
+		else{
+			localStorage.clear("userNumber");
+		}
+		$("#output").text("Output: ");
+	}
+
+	function mult(){
+		if(!window["localStorage"]){
+			var number = $.cookie("userNumber");
+		}
+		else{
+			var number = localStorage["userNumber"];
+		}
+		if(isNaN(number)){
+			$("#output").text("Output: No number found");
+		}
+		else{
+			number *= 42;
+			store(number);
+			$("#output").text("Output: "+number);
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<form id="frm" onSubmit="return store(document.getElementById('numbers').value)">
+	<label for="numbers">Enter Numbers:</label>
+	<input placeholder="digits only" type="text" class="required digits" id="numbers"><br>
+	<div id="output">Output:</div>
+	<input type="submit">
+	</form>
+	<input type="button" value="Clear" style="width:100px" onclick="erase()"><br>
+	<input type="button" value="Load" style="width:100px" onclick="load()"><br>
+	<input type="button" value="Multiply by 42" style="width:100px" onclick="mult()">
+</body>
+</html>

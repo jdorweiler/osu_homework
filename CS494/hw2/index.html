@@ -1,0 +1,40 @@
+<!DOCTYPEhtml>
+<html>
+<head>
+</head>
+<body>
+ <script>
+
+ function getText(text){
+	text = text.value.split("\n");
+	for(var i = 0; i < text.length; i++){
+		text[i] = text[i].split(",");
+	}
+	buildTable(text);
+ }
+ 
+ function buildTable(array){
+	for (var i=0;i<array.length;i++) {
+		for(var j=0; j<array[i].length; j++){
+			var col = document.createElement('td');
+			col.appendChild(document.createTextNode(array[i][j]));
+			document.getElementById('table').appendChild(col);
+		}
+	var row = document.createElement('tr');
+	document.getElementById('table').appendChild(row);
+    }
+ }
+ 
+ function clearTable(table){
+	while(table.hasChildNodes()){
+		table.removeChild(table.firstChild);
+	}
+ }
+ </script>
+<textarea class="FormElement" name="textInput" id="textInput" cols="40" rows="4"></textarea>
+<input type="button" value="Generate Table" onclick="getText(textInput)" />
+<input type="button" value="Clear Table" onclick="clearTable(table)" />
+<table id="table" width="200px" border="1"></table>
+ 
+</body>
+</html>

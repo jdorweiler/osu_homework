@@ -1,0 +1,135 @@
+\documentclass[12]{article}
+
+\begin{document}
+12.
+
+
+Basis Step:
+
+$f_1^2 = f_1*f_2$ 
+
+$f_1 = 1$ and $f_2 = 1$ 
+
+$f_1^2 = 1*1 = f_1 * f_2$ so the basis step checks out.\\
+
+Recursive Step:
+
+Assume that $f_1^2+f_2^2+\cdot\cdot\cdot+f_n^2=f_n*f_{n+1}$
+
+Prove: $f_1^2+f_2^2+\cdot\cdot\cdot+f_n^2+f_{n+1}=f_n*f_{n+1}*f_{n+2}$
+
+Rewriting the assumption:
+
+$(f_1^2+f_2^2+\cdot\cdot\cdot+f_n^2)+f_{n+1}^2$ where $(f_1^2+f_2^2+\cdot\cdot\cdot+f_n^2)$ is our hypothesis.  
+
+We can rewrite as $f_n*f_{n+1}+f_{n+1}^2$ and factor to get $f_{n+1}*(f_n+f_{n+1})$
+
+which is the definition of a Fibonacci number $f_{n+1}f_{n+2}$ and proves our 
+
+hypothesis. \\
+
+
+
+
+26 c)
+
+Basis step:
+
+The basis $\{0,0\}$ is still valid since $5|\{0,0\}=0$\\
+
+Recursive Step:
+Suppose that $a+b=5k$.  Then $5|\{a+2,b+3\}$ 
+
+which is $a+b+5 = 5k+5 = 5(k+1)$ where $k+1$ is also an integer.
+
+The same is true for $5|\{a+3,b+2\}$ which is $a+b+5 =5k+5 = 5(k+1)$
+
+This completes the proof.\\
+
+
+43.
+
+Base Case:
+
+$n(T) = 1$ then the height is $h(T) = 0$ and $1 \geq 2*0+1$
+
+Assume that the hypothesis holds for trees smaller then T.  We will make a 
+
+new tree from subtrees $T_1$ and $T_2$.  Since the hypothesis is still true we know 
+
+that $n(T_1) \geq 2*h(T_1)+1$ and the same applies for $T_2$.  The new tree is then 
+
+$n(T_n) = 1 + n(T_1)+(T_2)$ accounting for the top node.  
+
+Rewriting is equal to:
+
+$n(T_n) = 1 + 2*h(T_1)+1+2*h(T_2)+1$
+
+\indent \indent $1 + 2(h(T_1)+h(T_2)+1)$
+
+\indent  \indent $1 + 2*h(T)$ the height of both trees+1 is the height of the larger tree.
+
+This completes the proof.\\
+\newpage
+44.
+
+Base Case:
+
+$n=1$ so $l(T) = 1$ since a single node tree has no internal vertices the base 
+
+case is true. 
+
+Recursive Case:
+
+Assuming that the hypothesis holds for smaller trees we will make a new 
+
+tree out of two smaller trees $T_1$ and $T_2$.  The number of leaves in the new 
+
+tree is:
+$l(T) = l(T_1) +l(T_2) $.
+
+Substituting the definition of $i(T)$ gives:
+
+$l(T) = i(T_1)+1 + i(T_2) +1$ 
+
+\indent \indent i(T)+1 which is the definition of a full 
+
+binary tree. 
+This completes the proof.\\
+
+58.
+
+Basis Case:
+The empty string $\lambda$ has the same number of left and right 
+
+parentheses so the base case is true. \\
+
+Recursive Case:
+
+Assume: $x,y \in B$
+
+Let the number of left parentheses for x,y be $l_x$ and $l_y$, and the number of 
+
+right parentheses be $r_x$ and $r_y$.  The number of left and right parentheses for 
+
+$(x) \in B$ will be one greater on each side. $l_x+1$ and $r_x+1$.  Since both $l_x$ 
+
+and $r_x$ are still equal the hypothesis is true for this case.
+
+For the $xy \in B$ case: the number of left parentheses will be $l_x+l_y$ and the 
+
+number of right parentheses will be $r_x+r_y$  by the hypothesis we know that 
+
+$l_x+l_y = r_x+r_y$ and so there will be the same number of parentheses. 
+
+
+This completes the proof. 
+
+
+
+
+
+
+
+ 
+\end{document}

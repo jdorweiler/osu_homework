@@ -1,0 +1,71 @@
+\documentclass[12]{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+
+\begin{document}
+Jason Dorweiler
+
+Assignment 5.1 CS225
+
+Assignment: Section 6.1: 8, 12, 16, 26, 28, 48, 52, 72 (7th edition)\\
+
+\hrulefill\\
+
+8. How many different three-letter initials with none of the letters repeated can people have?\\
+
+With no repeated letters there will be $26*25*24 = 15600$ different three letter initials. \\
+
+\hrulefill\\
+
+12. How many bit strings are there of length six or less?\\
+
+There will be 6 separate cases where each case is $2^{n}$. The total will be $\displaystyle{\sum_{n=0}^{6} 2^n} = 127$\\
+
+\hrulefill\\
+
+16. How many strings are there of four lowercase letters that have the letter
+x
+in the term? \\
+
+If there were no X's then the highest number would be $26*26*26*26 = 456976$.  Since there needs to be an at least one X there will be 4 cases:\\
+
+Case 1 (one x): With one X there are 4 combinations of where the letter can be placed in the string.  That makes the total $4*25*25*25 = 62500$\\
+
+Case 2 (two x): There will now be 6 combinations of placements for the letter in the string but it also takes up two positions.  That makes the total $6*25*25 = 3750$\\
+
+Case 3 (three x): There are 4 combinations of placements for three x's.  That makes the total $2*25 = 100$\\
+
+Case 4 (four x): There is only one string with 4 x's.\\
+
+Adding all of the cases up gives a total of $66351$ four letter strings. \\
+
+\hrulefill
+
+24. How many strings of four decimal digits
+
+a) do not contain the same digit twice?
+
+b) end with an even digit?
+
+c) have exactly three digits that are 9s?\\
+
+A: Since the string can't contain the same digit twice it can have 10 choices for the first digit, 9 for the second, 8 for the third, and 7 for the last.  Giving a total of $10*9*8*7 = 5040 $\\
+
+B: Half of the strings will end in an even digit. The total of all four digit strings is $10^4$ and the even strings will be $\frac{10^4}{2} = 5000$\\
+
+C: There are 4 combinations of three digits (9) in a 4 digit string.  That makes the total $4*9 = 36$\\
+
+\hrulefill
+
+26. How many license plates can be made using either three digits
+followed by three letters
+or three letters followed by three digits?\\
+
+There are $10*10*10$ number combinations and $26*26*26$ letter combinations. The total for one type of plate is $10^3*26^3$.  The other plate will give the same number so the overall total is $2*(10^3*26^3) = 35152000$\\
+
+\hrulefill
+
+42. How many bit strings of length seven either begin with two 0s
+or end with three 1s?
+
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+\everymath{\displaystyle}
+\usepackage{graphicx}
+
+\begin{document}
+Extra Credit Quiz -  Jason Dorweiler
+
+\textbf{1.} Using the method of contradiction proof that the product of a nonzero rational number and an irrational number is irrational.\\
+
+Y is a rational number greater than zero and A is a irrational number. Using proof by contradiction $y*a = \frac{x}{z}$ where x,z are both integers making this a rational number. Since Y is also  rational we can substitute $\frac{j}{k}$ where j,k are also integers.  $\frac{j}{k}*a = \frac{x}{z}$.  Then $a = \frac{x*k}{z*j}$ a ratio of integers which is a rational number.  This contradicts our assumption that A was a irrational number. \\
+
+\textbf{2.} Use proof by induction to show that $5^{2k} - 1$ is divisible by 4 for all  k that belongs to N .\\
+
+Basis: P(1): $5^{2*1}-1$ = 24, 24/4 = 6, basis step is divisible by 4. 
+
+Inductive step: $5^{2(k+1)}-1$ = $5^{2k+2}-1 = 25*5^{2k}-1$.  
+
+Subtracting $5^{2k}-1$ gives:
+
+$25*5^{2k}-1-5^{2k}-1 = 24*25^k$ 
+
+and adding $5^{2k}-1$ gives:
+
+$25*5^{2k}-1 = 24*25^k + 5^{2k}-1$.  
+
+The right hand side gives us $24*25^k$ which is divisible by 4 for all $k\geq1$ and  $5^{2k}-1$ which is divisible 4 from our hypothesis.  Both right side terms are divisible by 4 so the left term is also divisible by 4. This proves the hypothesis. \\
+
+\textbf{3.}  Answer the following questions :
+1) One state's lottery tickets consists of choosing six numbers out of fifty-four. How many different lottery tickets are there?
+2) A committee of 8 people wishes to choose a chairperson, a vice-chairperson, and a treasurer. How many lists of such officers are possible?\\
+
+a. I'm assuming order doesn't matter so C(54,6) = $\frac{54!}{6!*48!}$ = 2582765
+
+b. 8*7*6 = 336\\
+
+\textbf{4.}  Every Graph that has an Euler circuit is connected. - True \\
+
+\textbf{5.}  An Euler circuit covers each vertex once but not more than once. - False\\
+
+\textbf{6.} Given a recursive deﬁnition of the sequence {an}, n = 1, 2, 3, . . . if
+$a_n = n^2 + 1$
+
+$a_{n+1} = (n+1)^2+1 = n^2+2n+1+1 = a_n+2n+1$\\
+
+\textbf{7.} Compute the following sum: $\sum_{2}^5 4*3^j$
+
+$4*\sum_{2}^5 3^j = 4*[\sum_{0}^5 3^j - \sum_{0}^1 3^j]$ = $4*[\frac{3^6-1}{2} - \frac{3^2-1}{2}] = 1440$\\
+
+\textbf{8.} Describe a graph model that represents a transit system in a large city. Should edges be directed or undirected? Should multiple edges be allowed? Should loops be allowed?\\
+
+It would be a directed graph where each station is a node and each edge is the route connecting two stations. This graph could have multiple edges because a station could have many connections to another.  There is no use for loops in this graph. 
+
+\end{document}
+
+
+

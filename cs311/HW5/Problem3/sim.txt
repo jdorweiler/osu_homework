@@ -1,0 +1,7 @@
+main pid: 27382
+Sorting with 1
+starting combiner
+	6 a
+	6 b
+	6 c
+got end sort

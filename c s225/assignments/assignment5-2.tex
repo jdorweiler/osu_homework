@@ -1,0 +1,66 @@
+\documentclass[12]{article}
+\usepackage{fullpage}	
+\setlength\parindent{0pt}
+
+\begin{document}
+Jason Dorweiler
+
+Assignment 5.2 CS225\\
+Assignment: Section 5.2: 4, 6, 14, 30, 32 (6th edition)
+
+\hrulefill\\
+
+4. A bowl contains 10 red balls an 10 blue balls. A woman selects b
+alls at random without
+looking at them.
+a) How many balls must she select to be sure of having at least three balls of the same
+color?
+
+b) How many balls must she select to be sure of having at least three blue balls?\\
+
+
+A) Assuming that she pics an alternating number of colors on each choice she can pick at most 5 before having three of the same color.\\
+
+B) She could pick all 10 red balls before getting a blue one.  So the total number needed to get 3 blue could be as high as 13. \\
+
+\hrulefill\\
+
+6. Let
+d
+be a positive integer. Show that among any group of
+d
++ 1(not necessarily consecutive) integers there are two with exactly the same remainder when they are divided by
+d
+.\\
+
+There will be a total of $d$ possible remanders.  For $d+1$ integers and d boxes for the remainders $\lceil{\frac{d+1}{d}}\rceil = 2$.  So there will be at least two with the same remainder. \\
+
+\hrulefill\\
+
+14. a) Show that if seven integers are selected from the first 10 positive integers, there must
+be at least two pairs of these integers with the sum 11.\\
+	
+b) Is the conclusion in part(a) true if six integers are selected
+rather than seven?\\
+
+A) There will be 5 two integer combinations that sum up to 11: $\{1,10\}, \{2,9\}, \{3,8\}, \{4,7\}, \{5,6\}$.  This shows that there are 5 possible containers.  Then if more than 5 are picked there will have to be a container with more than one $\lceil\frac{6}{2}\rceil = 2$.  So if 7 are picked there will be at least two pairs that sum to 11. \\
+
+B) No. A case where this is not ture is picking the first 6 integers $\{1,2,3,4,5,6\}$.  There is only one pair in that set that will sum to 11 $\{6,5\}$.\\
+
+
+\hrulefill
+
+
+30. Show that if there are 100,000,000 wage earners in the United States who earn less than
+1,000,000 dollars, then there are two who earned exacly the same amount of money, to the
+penny, last year.\\
+
+There are $1,000,000 * 100$ different amounts (down to the penny).  Subtract 1 since 0 is not a wage earner.  The There will be $\lceil\frac{100000000}{99999999}\rceil = 2$ people earning the same amount.\\
+
+\hrulefill
+
+32. A computer network consists of six computers. Each computer is directly connected to at least one of the other computers. Show that there are at least two computers in the network that are directly connected to the same number of other computers.\\
+
+If each of the 6 computers are connected to at least one other there will be 5 containers.  Then there are $\lceil\frac{6}{5}\rceil = 2$ that are directly connected to the same number. 
+ 
+\end{document}

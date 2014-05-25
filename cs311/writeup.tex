@@ -1,0 +1,73 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\title{CS311 Homework 1}
+\author{Jason Dorweiler\\
+	dorweilj@onid.oregonstate.edu\\
+	CS211-400}
+\begin{document}
+\maketitle
+\textbf{Question 2 Revision Control Systems }\\
+
+Revision control systems are a way to manage and store past version of files.
+They are useful because you can store previous version of a file and restore your current version if you were to mess something up.  It also allows others to work on a small portion of a large project and then merge their changes into the larger project.  \\
+
+Git (Specifically commands for the GitHub version)
+
+git push - update the remote repository
+
+git fetch - download changes from remote repository
+
+git clone - make a copy of a repository
+
+git checkout - start work on a specific branch\\
+
+RCS
+
+mkdir RCS - initialize an RCS directory
+
+rcsdiff - show what has changed in the file
+
+co - checkout a file to work on
+
+rcs -l - lock a file so no one else can check it out\\
+
+SVN
+
+create - create a new repository
+
+checkout - start working on a local branch
+
+list - show the current repositories in a list
+
+status - show what files have changed\\
+
+Mercurical (hg)
+
+hg clone - make a local copy of a repository
+
+hg diff - show changes in files
+
+hg pull - update the local files
+
+hg update - update the repository with changed files
+\pagebreak
+
+\textbf{Question 3 Piping vs. Redirection}
+
+Redirection is a way to read from and write to files.  For example, you can redirect the output from $ls$ to some file using $>$.\\
+
+Piping is a way to send data from one process to another.  Instead of saving data to a file you can sent it to another program.  An example that I always find helpful is piping the results from $ps$ to $grep$: $ps\ -A |\ grep\ firefox$ will give you the process id of firefox. \\
+
+\textbf{Question 4 Find Command}
+\begin{verbatim}
+find . -type f -exec file '{}' \;
+\end{verbatim}
+
+\textbf{Question 5 Make}
+
+Running make will start the GNU make program.  Make is most useful for finding which file in a large project needs to recompiled.  Large project can take a very long time to compile so only recompiling the update files saves a lot of time.\\
+ 
+\end{document}

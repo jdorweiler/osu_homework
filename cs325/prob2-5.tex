@@ -1,0 +1,77 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+
+Using the three cases for the ratio: $$(\frac{a}{a^d})$$
+from DPV pg. 60:\\
+Case 1: $
+(\frac{a}{a^d}) < 1
+$
+Then the series is decreasing.  It's sum is given by $O(n^d)$\\
+Case 2: $
+(\frac{a}{a^d}) > 1
+$
+Then the series is decreasing.  It's sum is given by $n^{\log_b^a}$\\
+Case 3: $
+(\frac{a}{a^d}) = 1
+$
+Then the series is decreasing.  It's sum is given by $n^d\log(n)$\\
+
+(a)
+$T(n) = 2T(\frac{n}{3})+1$
+
+case 1: $\Theta(n)$\\
+
+(b)
+$T(n) = 5T(\frac{n}{4})+n$
+
+case 2: $\Theta(n^{\log_4^5})$\\
+
+(c)
+$T(n) = 7T(\frac{n}{7})+n$
+
+case 3 with d = 1: $\Theta(n\log(n))$\\
+
+(d)
+$T(n) = 9T(\frac{n}{3})+n^2$
+
+case 3 with d = 2: $\Theta(n^2\log(n))$\\
+
+(e)
+$T(n) = 8T(\frac{n}{2})+n^3$
+
+case 3 with d = 3: $\Theta(n^3\log(n))$\\
+
+(f)
+$T(n) = 49T(\frac{n}{25})+n^{\frac{3}{2}}\log(n)$
+
+case 2 but the non-recursive portion dominates so: $\Theta(n^{\frac{3}{2}}\log(n))$\\
+
+(g)
+$T(n) = T(n-1)+2$
+
+The depth of the recursion tree will be n so it's easy to see that this one is $\Theta(n)$\\
+
+(h)
+$T(n) = T(n-1)+n^c$
+
+In this case the depth of the recursion tree is still n but each level of the tree takes $n^c$ so: $\Theta(n*n^c)$\\
+
+(i)
+$T(n) = T(n-1)+c^n$
+
+In this case the depth of the recursion tree is still n but $c^n$ for c $>$ 1 is going to dominate so: $\Theta(c^n)$\\
+
+(j)
+$T(n) = 2T(n-1)+1$
+
+The depth of the tree will be n and time 2 at each level: $\Theta(2^n)$\\
+
+(k)
+$T(n) = T(\sqrt{n})+1$
+Stuck on this one. There's going to be a $\log(n)$ in there somewhere since n decreases by $\sqrt{n}$ at each level. 
+: $\Theta(?)$\\
+\end{document}

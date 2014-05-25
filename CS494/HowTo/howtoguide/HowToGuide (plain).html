@@ -1,0 +1,427 @@
+<h2 id="using-node-express-and-mongodb-to-create-a-basic-home-brewing-recipe-site">Using Node, Express, and MongoDB to create a basic home brewing recipe site</h2>
+
+<p>For this how-to guide, I decided to look into NodeJS.  I have played around with it before, but this was prior to starting a CS degree, and it went way over my head.  I though I would take another look at it and see if I can figure it out after getting a few CS classes under my belt.</p>
+
+<p>I began by looking through the Node api, and although it seemed well documented, I didn’t really get a feeling of a potential use for it.  I did a bit of googling and read through other tutorials.  I found many to-do lists and chat servers- both of which didn’t seem to difficult to create.  I  wanted to complete a more substantial project with potential for future use.  I found a tutorial that uses <a href="http://blog.ijasoneverett.com/2013/03/a-sample-app-with-node-js-express-and-mongodb-part-1/">Node with ExpressJS and MongoDB</a> to create a web page that can interact with an employee database.</p>
+
+<p>This tutorial seemed to fit well with what we have been doing in class with PHP and MySQL, so I decided to further investigate. This tutorial is great and well-put together. I got the origional site up very quickly, but as soon as I tried to make changes, it began to fall apart.  I think part of that was just because Javascript is very new to me and I think there is room for a similar tutorial but one that really breaks the application down and shows how it works.  I hope that after following this tutorial you will have a good understanding of how to use Node to set up a site like this.</p>
+
+<p>To do this I will be showing you  how to set up a very basic home brewing recipe website that will store data in MongoDB.  This is a project I’ve had in mind for a while and something that my group for CS494 is looking into from a UI prespective.</p>
+
+<p>Just so you know what you’re getting into, here is a quick recording of me walking through the site.  All of the source files can be found on my <a href="https://github.com/jdorweiler/beerDatabase">GitHub</a></p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>The Node website has install instructions for Linux, Mac, and Windows.  For this tutorial I’ll be using Ubuntu 12.04. I can’t make any guarentees for other operating systems, but assuming you can get Node installed, everything else should be the same.</p>
+
+<p>On Ubuntu, Node is very easy to install.  You can get Node and npm (Node Package Manager) installed by running:</p>
+
+<p><code> <br>
+$ sudo apt-get install nodejs <br>
+</code></p>
+
+<p>We will also be using ExpressJS and MongoDB.  Run the following commands to install Express</p>
+
+<p><code> <br>
+$ sudo npm install express -g <br>
+</code></p>
+
+<p><code> <br>
+$ sudo npm install <br>
+</code></p>
+
+<p>Installing MongoDB is a bit more complicated, but still fairly easy.  Follow the instructions in this link to get your <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/">database set up</a>.  While you are there, it wouldn’t be a bad idea to have a look at the <a href="http://mongodb.github.io/node-mongodb-native/">API</a> before we get started.</p>
+
+<p><strong>Hello World with Node and Express</strong></p>
+
+<p>Now that you have everything set up, make a new folder for your project and move to that directory.  In this directory, you can initialize the skeleton structure of the site by running</p>
+
+<p><code> <br>
+express -c stylus <br>
+</code></p>
+
+<p>This also sets up your site to work with Stylus, which is a very simple css language.  We won’t be using Stylus in this example, but it is standard to include it with Express.  And, it would be good to have when you perfect your site’s appearance with some CSS. <br>
+The next step is to tell express that we are going to be working with MongoDB.  To do this, add a dependancy in the package.json file in the top level of your directory.  Do this by adding the line</p>
+
+<p><code> <br>
+"mongodb": "&gt;= 0.9.6-7" <br>
+</code></p>
+
+<p>in the dependancy section.  Now running <br>
+<code>npm install -d</code> will set everything up to work with MongoDB.  We can test out Node and Express to see if everything works by running</p>
+
+<p><code> <br>
+$ node app.js <br>
+</code></p>
+
+<p>You should see a line on your terminal that says the Express server is listening on port 3000.  Open your favorite browser and go to the address 0:3000.</p>
+
+<p><img src="screen1.png" alt="img1" title=""></p>
+
+<p>Before we move on, it would be helpful to look at where this page came from.  Open up the app.js file located in the top level of your directory.  You should see a file like the one below that was automatically created for you when you ran the Express command above.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="com">/**
+ * Module dependencies.
+ */</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'express'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> routes </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'./routes'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> user </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'./routes/user'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> http </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'http'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> path </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'path'</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> express</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">// all environments</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'port'</span><span class="pun">,</span><span class="pln"> process</span><span class="pun">.</span><span class="pln">env</span><span class="pun">.</span><span class="pln">PORT </span><span class="pun">||</span><span class="pln"> </span><span class="lit">3000</span><span class="pun">);</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'views'</span><span class="pun">,</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="pln"> </span><span class="str">'views'</span><span class="pun">));</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'view engine'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'jade'</span><span class="pun">);</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">favicon</span><span class="pun">());</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">logger</span><span class="pun">(</span><span class="str">'dev'</span><span class="pun">));</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">json</span><span class="pun">());</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">urlencoded</span><span class="pun">());</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">methodOverride</span><span class="pun">());</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">app</span><span class="pun">.</span><span class="pln">router</span><span class="pun">);</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="kwd">require</span><span class="pun">(</span><span class="str">'stylus'</span><span class="pun">).</span><span class="pln">middleware</span><span class="pun">(</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="pln"> </span><span class="str">'public'</span><span class="pun">)));</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="kwd">static</span><span class="pun">(</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="pln"> </span><span class="str">'public'</span><span class="pun">)));</span><span class="pln">
+
+</span><span class="com">// development only</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="str">'development'</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'env'</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="pln">errorHandler</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">,</span><span class="pln"> routes</span><span class="pun">.</span><span class="pln">index</span><span class="pun">);</span><span class="pln">
+app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/users'</span><span class="pun">,</span><span class="pln"> user</span><span class="pun">.</span><span class="pln">list</span><span class="pun">);</span><span class="pln">
+
+http</span><span class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">app</span><span class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'port'</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Express server listening on port '</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'port'</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>You can think of this file and the brains for the server.  The the function at the bottom <code>http.createServer</code> is where the actual Node server is started.  Above that, we set the port using</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'port'</span><span class="pun">,</span><span class="pln"> process</span><span class="pun">.</span><span class="pln">env</span><span class="pun">.</span><span class="pln">PORT </span><span class="pun">||</span><span class="pln"> </span><span class="lit">3000</span><span class="pun">);</span></code></pre>
+
+<p>Let’s take a look at the routes.  The routes are going to be the functions that begin with <code>app.get()</code> or <code>app.post()</code>.  When the server gets a GET or POST request, we need to know what page to feed back to the browser.  This is where the routes are necessary.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-`javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">,</span><span class="pln"> routes</span><span class="pun">.</span><span class="pln">index</span><span class="pun">);</span><span class="pln">
+</span><span class="str">````</span><span class="pln">
+
+</span><span class="typ">This</span><span class="pln"> line tells </span><span class="typ">Node</span><span class="pln"> what to </span><span class="kwd">do</span><span class="pln"> </span><span class="kwd">when</span><span class="pln"> we have a GET request </span><span class="kwd">for</span><span class="pln"> the page located at </span><span class="lit">0</span><span class="pun">:</span><span class="lit">3000</span><span class="pun">/</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">our</span><span class="pln"> index page</span><span class="pun">.</span><span class="pln">  </span><span class="typ">Specifically</span><span class="pun">,</span><span class="pln"> it </span><span class="kwd">is</span><span class="pln"> sending the page </span><span class="str">`routes.index`</span><span class="pln"> back to the browser</span><span class="pun">.</span><span class="pln">  </span><span class="typ">Inside</span><span class="pln"> the routes</span><span class="pun">.</span><span class="pln">index file you will see the following </span><span class="kwd">function</span><span class="pun">.</span><span class="pln">
+
+
+
+
+
+</span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"se-section-delimiter"</span><span class="pun">&gt;&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln">
+
+</span><span class="str">```javascript
+exports.index = function(req, res){
+  res.render('index', { title: 'Express' });</span></code></pre>
+
+<p>This is using one of the <a href="http://expressjs.com/api.html#app.render">Express API</a> functions called render <code>render('index', { title: 'Express' }</code>.  This simple line of code is more complex than I originally thought.  After much reading, my best explanaio ins that this renders a HTML string which is called a view in the API.  By default, Express looks in the <code>views</code> folder for this index page and sends it a title called “Express”.  In the index file within the views folder, there is simple html page that looks like this:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-html"><span class="pln">extends layout
+block content
+  h1= title
+  p Welcome to #{title}</span></code></pre>
+
+<p>Note that this page is actually written in <a href="http://jade-lang.com/">Jade</a> which is the default HTML language used by Express.</p>
+
+<p>The <code>export.index</code> is necessary because Node does not allowing sharing of variables between files.  By adding export, you are letting Node know that this variable can be used by other functions in other files.  In this case, the origional app.get function in our app.js file will serve us the HTML content.  Now that we have covered the basics of working with Node and Express, let’s begin interacting with the MongoDB database.</p>
+
+<h2 id="interacting-with-mongodb">Interacting with MongoDB</h2>
+
+<p>We need to make a few changes to our app.js file so that it will work with the database.  The way it is set up right now we are only sending static pages back to the browser.  We will add a few new functions to the app.js file that will call functions in a separate file that handles all the interaction with th edabase.  First we need to add a few lines in app.js.  In this case, I am going to be using a database called <code>RecipeProvider</code>.  We will need to add in an additional dependancy for the database.</p>
+
+<p><code>RecipeProvider = require('./recipeProvider').RecipeProvider;</code></p>
+
+<p>This dependency tells Node to use module called recipeProvider, which we will write next.  In the top level of your directory, make a file called recipeProvider.js.  Note that this file name is case-sensitive and must match the file you loaded above using <code>require()</code>.</p>
+
+<p>Here is a link the complete <a href="https://github.com/jdorweiler/beerDatabase/blob/master/recipeProvider.js">recipeProvider.js</a> file.  I will walk through this process in steps below.</p>
+
+<p>The first thing we need to do is set up our database.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> </span><span class="typ">Db</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'mongodb'</span><span class="pun">).</span><span class="typ">Db</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> </span><span class="typ">Connection</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'mongodb'</span><span class="pun">).</span><span class="typ">Connection</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> </span><span class="typ">Server</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'mongodb'</span><span class="pun">).</span><span class="typ">Server</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> BSON </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'mongodb'</span><span class="pun">).</span><span class="pln">BSON</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> </span><span class="typ">ObjectID</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'mongodb'</span><span class="pun">).</span><span class="typ">ObjectID</span><span class="pun">;</span></code></pre>
+
+<p>It is interesting to note that the<a href="http://docs.mongodb.org/manual/reference/object-id/"> ObjectID</a> which is a function in the MongoDB API that allows us to create and use the ID strings that are used for keys in the database.  Above that line is the require statement for the <a href="http://http://docs.mongodb.org/manual/core/document/">BSON </a> API from MongoDB.  The database stores things in a format called BSON which is for our purposes is the same thing as JSON.  Here is an example of what a single beer recipe might look like in the database:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pun">{</span><span class="pln"> _id</span><span class="pun">:</span><span class="pln"> </span><span class="lit">53063adaca24b99c255d4f09</span><span class="pun">,</span><span class="pln">
+  title</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Belgan Tripel'</span><span class="pun">,</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Troegs La Grave'</span><span class="pun">,</span><span class="pln">
+  grain</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'Pilsner 2 Row'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Munich'</span><span class="pln"> </span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'12 lbs'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 lbs'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">],</span><span class="pln">
+  hops</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'Saaz'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Willamette'</span><span class="pln"> </span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'2 oz'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 oz'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">],</span><span class="pln">
+  yeast</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'Trappist'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'1 vial'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span></code></pre>
+
+<p>Then we set up a RecipeProvider object that will connect us to the database.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="com">// connect to the database</span><span class="pln">
+</span><span class="typ">RecipeProvider</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">host</span><span class="pun">,</span><span class="pln"> port</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">db</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Db</span><span class="pun">(</span><span class="str">'node-mongo-recipe'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Server</span><span class="pun">(</span><span class="pln">host</span><span class="pun">,</span><span class="pln"> port</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">safe</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln">auto_reconnect</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{}));</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">db</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){});</span><span class="pln">
+</span><span class="pun">};</span></code></pre>
+
+<h2 id="setting-up-our-html-pages">Setting up our HTML pages</h2>
+
+<p>Before we get too far, let’s go set up our HTML pages.  For this demo, we will have an index, new recipe, and edit recipe pages.  Make a new file in the <code>views</code> folder called <code>index.jade</code>  Here is what our completed index page will look like.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="kwd">extends</span><span class="pln"> layout
+head
+body
+  block content
+    h1</span><span class="pun">=</span><span class="pln"> title
+
+    </span><span class="com">#recipes</span><span class="pln">
+      div
+        table 
+          thead
+            tr
+              td </span><span class="typ">Style</span><span class="pln">
+              td </span><span class="typ">Recipe</span><span class="pln"> </span><span class="typ">Name</span><span class="pln">
+            tr 
+            </span><span class="pun">-</span><span class="pln"> each recipe </span><span class="kwd">in</span><span class="pln"> recipes
+                tr
+                    td</span><span class="pun">=</span><span class="pln"> recipe</span><span class="pun">.</span><span class="pln">title
+                    td</span><span class="pun">=</span><span class="pln"> recipe</span><span class="pun">.</span><span class="pln">name 
+                    td
+                        div
+                            form</span><span class="pun">(</span><span class="pln"> method</span><span class="pun">=</span><span class="str">"post"</span><span class="pun">,</span><span class="pln"> action</span><span class="pun">=</span><span class="str">"/recipe/:id/delete"</span><span class="pun">)</span><span class="pln">
+                            input</span><span class="pun">(</span><span class="pln">name</span><span class="pun">=</span><span class="str">"_id"</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"hidden"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="pln">recipe</span><span class="pun">.</span><span class="pln">_id</span><span class="pun">.</span><span class="pln">toHexString</span><span class="pun">())</span><span class="pln"> 
+                            input</span><span class="pun">(</span><span class="pln">id</span><span class="pun">=</span><span class="str">"edit"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="str">"x"</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"submit"</span><span class="pln"> style</span><span class="pun">=</span><span class="str">"float: right"</span><span class="pun">)</span><span class="pln"> 
+                    td
+                        div
+                            form</span><span class="pun">(</span><span class="pln"> method</span><span class="pun">=</span><span class="str">"post"</span><span class="pun">,</span><span class="pln"> action</span><span class="pun">=</span><span class="str">"/recipe/:id/edit"</span><span class="pun">)</span><span class="pln">
+                            input</span><span class="pun">(</span><span class="pln">name</span><span class="pun">=</span><span class="str">"_id"</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"hidden"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="pln">recipe</span><span class="pun">.</span><span class="pln">_id</span><span class="pun">.</span><span class="pln">toHexString</span><span class="pun">())</span><span class="pln"> 
+                            input</span><span class="pun">(</span><span class="pln">id</span><span class="pun">=</span><span class="str">"edit"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="str">"edit"</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"submit"</span><span class="pln"> style</span><span class="pun">=</span><span class="str">"float: right"</span><span class="pun">)</span><span class="pln"> 
+
+        a</span><span class="pun">(</span><span class="pln">href</span><span class="pun">=</span><span class="str">"/recipe/new"</span><span class="pun">)=</span><span class="pln"> </span><span class="str">"add new recipe"</span></code></pre>
+
+<p>Don’t forget that for this demo, we are using Express with Jade as our HTML template language.  All of the typical rules of HTML still apply, but with Jade you don’t need to use closing tags.  Jade is however whitespace sensitive, so you must indent anything that would be in that particular tag.  It also distinguishes between tabs and 4-spaces.  You must be consistent throughout the page, so choose one style and stick with it.</p>
+
+<p>A neat discovery with Jade is that you can use loops and conditionals right inline with the other code.  For example see the line:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pun">-</span><span class="pln"> each recipe </span><span class="kwd">in</span><span class="pln"> recipes</span></code></pre>
+
+<p>Use the <code>-</code> to tell Jade that you want to use a loop or conditional, and then no braces are needed.  In this page, we are creating a table which will have two header cells that display the recipe title and name.  Below the table, we are going to loop through an array called recipes. For each recipe in the array, we will print out the title and name in separate cells.  To the right of each recipe, we will have buttons that will allow you to delete and edit a recipe.  At the bottom of the page, we leave a link to the new recipe page.  While not functional yet, here is a preview of what the front page will look like once finished.</p>
+
+<p><img src="screen4.png" alt="screen4" title=""></p>
+
+<p>Now that we have the index page completed, let’s make the add new recipe page.  Make a new file called <code>new_recipe.jade</code> in your views folder.  Here is what our new recipe page will look like.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="kwd">extends</span><span class="pln"> layout
+block content
+    h1</span><span class="pun">=</span><span class="pln"> title
+    div</span><span class="pun">.</span><span class="pln">newrecipe
+        form</span><span class="pun">(</span><span class="pln"> method</span><span class="pun">=</span><span class="str">"post"</span><span class="pun">)</span><span class="pln">
+            table
+                tr
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Title</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"title"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Recipe Style"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeTitle"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Name</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"name"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Recipe Name"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeName"</span><span class="pun">)</span><span class="pln">
+                tr
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Grain</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"grain"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Grain"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeGrain"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label amount </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"grain-ammount"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">""</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeAmount"</span><span class="pun">)</span><span class="pln">
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Grain</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"grain"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Grain"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeGrain"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label amount </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"grain-ammount"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">""</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeAmount"</span><span class="pun">)</span><span class="pln">
+                tr
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Hops</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"hops"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Grain"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeGrain"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label amount </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"hops-ammount"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">""</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeAmount"</span><span class="pun">)</span><span class="pln">
+                tr
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Hops</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"hops"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Grain"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeGrain"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label amount </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"hops-ammount"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">""</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeAmount"</span><span class="pun">)</span><span class="pln">
+                tr
+                    div
+                        span</span><span class="pun">.</span><span class="pln">label </span><span class="typ">Yeast</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"yeast"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">"Grain"</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeGrain"</span><span class="pun">)</span><span class="pln">
+                        span</span><span class="pun">.</span><span class="pln">label amount </span><span class="pun">:</span><span class="pln">
+                        input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">=</span><span class="str">"yeast-ammount"</span><span class="pln"> placeholder</span><span class="pun">=</span><span class="str">""</span><span class="pun">,</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"editRecipeAmount"</span><span class="pun">)</span><span class="pln">
+
+                </span><span class="com">#editRecupeSubmit</span><span class="pln">
+                br
+                input</span><span class="pun">(</span><span class="pln">type</span><span class="pun">=</span><span class="str">"submit"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="str">"Save"</span><span class="pun">)</span><span class="pln">
+        br
+        a</span><span class="pun">(</span><span class="pln">href</span><span class="pun">=</span><span class="str">"/"</span><span class="pun">)!=</span><span class="pln"> </span><span class="str">"Back to Recipe List"</span></code></pre>
+
+<p>This page will render a form with a box for a recipe title, name, 2 grains, 2 hops, and 1 type of yeast.  Take a look at the names for each of the input boxes.  We will use these to create our JSON array that will be sent to the database. Here is the actual JSON data that will be sent after we submit the form:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pun">{</span><span class="pln"> title</span><span class="pun">:</span><span class="pln"> </span><span class="str">'New Beer Style'</span><span class="pun">,</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Recipe Name'</span><span class="pun">,</span><span class="pln">
+  grain</span><span class="pun">:</span><span class="pln"> 
+   </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'1 Grain Name'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 Grain Name'</span><span class="pln"> </span><span class="pun">],</span><span class="pln">
+     </span><span class="pun">[</span><span class="pln"> </span><span class="str">'1 Grain Amt'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 Grain Amt'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">],</span><span class="pln">
+  hops</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'1 Hops'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 Hops'</span><span class="pln"> </span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'1 Hops Amt'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2 Hops Amt'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">],</span><span class="pln">
+  yeast</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="str">'Yeast Name'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Yeast Amt'</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span></code></pre>
+
+<h2 id="setting-up-the-routes">Setting up the routes</h2>
+
+<p>Now that we have the index and new recipe pages ready, let’s set up the routes for the site in the <code>app.js</code> file.  The complete app.js file is a bit long, so I’ll link the full version here: <a href="https://github.com/jdorweiler/beerDatabase/blob/master/app.js">app.js</a>.</p>
+
+<p>Think back to the hello world example at the beginning of the tutorial, and you will recognise that <code>app.get</code> functions.  We will use the same idea to create routes for the site by definiing different <code>app.get</code> and <code>app.post</code> functions.  Let’s look at the route for our new index page. </p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">){</span><span class="pln">
+    recipeProvider</span><span class="pun">.</span><span class="pln">findAll</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recip</span><span class="pun">){</span><span class="pln">
+        res</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="str">'index'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            title</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Recipes"</span><span class="pun">,</span><span class="pln">
+            recipes</span><span class="pun">:</span><span class="pln">recip
+        </span><span class="pun">});</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>The function above will use our recipeProvider object, which we connected to the database using:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> recipeProvider</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RecipeProvider</span><span class="pun">(</span><span class="str">'localhost'</span><span class="pun">,</span><span class="pln"> </span><span class="lit">27017</span><span class="pun">);</span></code></pre>
+
+<p>This function will be called whenever we have a GET request to the <code>'/'</code> address.  When this function is called, it will use the <code>findAll()</code> method (which we still have to write, see next section) which will return our recipes from the database.  Then we use <code>render()</code> just like we did in the hello world page to render our <code>index.jade</code> page and send it the recipes.  This will produce the front page with a table of recipes that I showed you earlier.</p>
+
+<p>If you want to test out your index page right now, you can do so by first starting MongoDB in a separate terminal using</p>
+
+<p><code> <br>
+$ sudo mongod <br>
+</code></p>
+
+<p>and then running your app.js file</p>
+
+<p><code> <br>
+$ node app.js <br>
+</code></p>
+
+<p>If that worked you should now have a blank recipe page.</p>
+
+<p>Our index page is pretty boring without any recipies on it, so let’s write the routes to handle the <code>recipe_new.jade</code> page.  First we need to write the function that handles a GET request to the page since we are going to go to the page through the normal link at the bottom of the index page.  This follows the same idea as the other route fuctions.  A GET request to this page will call the function which will render the recipe_new.jade page and send the title “New Recipe”.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/recipe/new'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">){</span><span class="pln">
+    res</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="str">"recipe_new"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        title</span><span class="pun">:</span><span class="pln"> </span><span class="str">"New Recipe"</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>More interesting is the function we need to handle a POST from the new recipe page.  Remember that we are submitting the data as a form, so we need a way to handle the POST.  Inside of this function, we are going to call the <code>save()</code> method (we still need to write this) and we will send the save method our JSON data, which we will then format using this fuction.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="str">'/recipe/new'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">){</span><span class="pln">
+    recipeProvider</span><span class="pun">.</span><span class="pln">save</span><span class="pun">({</span><span class="pln">
+        title</span><span class="pun">:</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'title'</span><span class="pun">),</span><span class="pln">
+        name</span><span class="pun">:</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'name'</span><span class="pun">),</span><span class="pln">
+        grain</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'grain'</span><span class="pun">),</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'grain-ammount'</span><span class="pun">)],</span><span class="pln">
+        hops</span><span class="pun">:</span><span class="pln">  </span><span class="pun">[</span><span class="pln">req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'hops'</span><span class="pun">),</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'hops-ammount'</span><span class="pun">)],</span><span class="pln">
+        yeast</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'yeast'</span><span class="pun">),</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'yeast-ammount'</span><span class="pun">)]</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> docs</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            res</span><span class="pun">.</span><span class="pln">redirect</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>Notice how the formatting in this function matches the JSON data I showed you earlier.  We can use <code>req.param</code> and the name from our form to get each of the values and put them into the proper format.  After the save function returns, it redirects us back to the index page (using a GET) and renders our new recipe in the table.</p>
+
+<h2 id="interacting-with-the-database">Interacting with the database</h2>
+
+<p>Before our index and new recipe pages will work, we must write the two methods getAll and Save to work with MongoDB.  These will be kept in the recipeProvider.js file in the top level of your directory.  To get the two pages working, we will need two methods for getting a collection</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="com">// internal functions use to get a collection from the database</span><span class="pln">
+</span><span class="typ">RecipeProvider</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">getCollection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">db</span><span class="pun">.</span><span class="pln">collection</span><span class="pun">(</span><span class="str">'recipes'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recipe_collection</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> callback</span><span class="pun">(</span><span class="pln">error</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> callback</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> recipe_collection</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="com">// get all the recipes in the database</span><span class="pln">
+</span><span class="typ">RecipeProvider</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">findAll </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getCollection</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recipe_collection</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> callback</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pun">{</span><span class="pln">
+            recipe_collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">().</span><span class="pln">toArray</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> results</span><span class="pun">){</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> callback</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln">
+                </span><span class="kwd">else</span><span class="pln"> callback</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> results</span><span class="pun">)</span><span class="pln">
+            </span><span class="pun">});</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="typ">RecipeProvider</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">save </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">recipes</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getCollection</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recipe_collection</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln"> error </span><span class="pun">)</span><span class="pln"> callback</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln">
+      </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        recipe_collection</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">(</span><span class="pln">recipes</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          callback</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> recipes</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">};</span></code></pre>
+
+<p>Just a note about the terminology used with MongoDB since it differs from SQL:  tables are called collections and rows are called documents.</p>
+
+<p>Before using any of the methods, we need to get the collection using <code>getCollection()</code>.  This returns a collection instance with the name “recipes”.  In the findAll function, we get the collection and then use the <code>find()</code> method to return all documents in the collection. Now that we have our recipes in an array, we return the recipe array (called results) to the calling function, which is this case is findAll() funciton that renders our index page back in the app.js file.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">){</span><span class="pln">
+    recipeProvider</span><span class="pun">.</span><span class="pln">findAll</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recip</span><span class="pun">){</span></code></pre>
+
+<p>We then send the results to the index page, which is now an array called “recipes”.  Hopefull your index.jade file will start to make a bit more sense now.  Take a look at the lines below.  Now that the recipes are sent to the index file, we can display the values using:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-html"><span class="pln">recipe.title
+recipe.name</span></code></pre>
+
+<p>And we can loop through the enteries in the recipe array using:</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pun">-</span><span class="pln"> each recipe </span><span class="kwd">in</span><span class="pln"> recipes</span></code></pre>
+
+<p>Another important thing to pay attention to in the index file is the line</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">input</span><span class="pun">(</span><span class="pln">name</span><span class="pun">=</span><span class="str">"_id"</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"hidden"</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">=</span><span class="pln">recipe</span><span class="pun">.</span><span class="pln">_id</span><span class="pun">.</span><span class="pln">toHexString</span><span class="pun">())</span><span class="pln"> </span></code></pre>
+
+<p>Since we are going to have buttons for editing and deleting a single recipe, we need a way to store its id.  By setting the value of a hidden input to store the id, we can pass it using a POST request. </p>
+
+<p><strong>Adding new entries</strong></p>
+
+<p>Now we still need to add some recipes to the database, so let’s write function to handle that.  Take a look above at the <code>RecipeProvider.prototype.save()</code> function.  Remember that this function is going to be called by the functoin <code>app.post('/recipe/new'</code> in the app.js file.  This was the function above in the “setting up routes” section where we built our JSON data to send to the database.  This is where all that hard work is going to pay off.  We just need to pass the JSON data to the <code>insert()</code> method and our new recipe is stored.</p>
+
+<p>If you start up your page again (Note: don’t forget to restart Node after changing any js files) and this time click on the link to add a new recipe you should get this page:</p>
+
+<p><img src="screen3.png" alt="screen3" title=""></p>
+
+<p>We can finish off the site by adding in the routes for the edit and delete buttons on the index page.  When we click on the delete (X) button on the front page, it will make a POST request to /recipe/:id/delete.  The name of the address isn’t really important since we won’t even be rendering this page.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="str">'/recipe/:id/delete'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">){</span><span class="pln">
+    recipeProvider</span><span class="pun">.</span><span class="kwd">delete</span><span class="pun">(</span><span class="pln">req</span><span class="pun">.</span><span class="pln">param</span><span class="pun">(</span><span class="str">'_id'</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> docs</span><span class="pun">){</span><span class="pln">
+        res</span><span class="pun">.</span><span class="pln">redirect</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>Instead, with this route we will call the delete method from the recipeProvider.js file passing it the id of the document we want to remove.  Our callback is then just a redirect back to the index page.  The rest of the functions and routes are very similar to the ones I’ve already walked through. so I’ll leave those alone.</p>
+
+<p>Before we finish up, there are a few tricky areas I encountered while working on this project.  Hopefully this tutorial will save you hours of debugging.  The first problem I had was trying to get a single document using the id.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="pun">{</span><span class="pln">_id</span><span class="pun">:</span><span class="pln"> recipe_collection</span><span class="pun">.</span><span class="pln">db</span><span class="pun">.</span><span class="pln">bson_serializer</span><span class="pun">.</span><span class="typ">ObjectID</span><span class="pun">.</span><span class="pln">createFromHexString</span><span class="pun">(</span><span class="pln">recipeId</span><span class="pun">)}</span></code></pre>
+
+<p>I assumed that I could just send it the id number and it would find or remove that document, but unfortunatly that wasn’t the case.  I’m still not sure what it needed, but I tested it by just passing the id and it does not work this way.</p>
+
+<p>The next problem I had occurred when searching for documents using the <code>find()</code> function.  An example of this issue can be found in the search function in recipeProvider.js.</p>
+
+<pre style="" class="prettyprint prettyprinted"><code class="language-javascript"><span class="typ">RecipeProvider</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">search</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">searchterm</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getCollection</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recipe_collection</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    recipe_collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> searchterm</span><span class="pun">}).</span><span class="pln">toArray</span><span class="pun">(</span><span class="pln">
+        </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> recipe</span><span class="pun">){</span><span class="pln">
+            callback</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> recipe</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln"> 
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>I though that find() would return the data in an array or as JSON, but instead it returned a pointer to the location of the results.  You have to actually use the <code>toArray()</code> to move the pointer to the location of the data which is an array.  I finally made this discovery after digging through the <a href="http://docs.mongodb.org/manual/reference/method/cursor.toArray/">API docs</a></p>
+
+<p>And my last debugging tip:  Don’t forget to restart Node after making changes to the javascript files! (that one got me a few times).</p>

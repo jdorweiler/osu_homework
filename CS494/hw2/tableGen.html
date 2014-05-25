@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+CS494 - Assignment 2 - Table Generator
+Jason Dorweiler
+01-31-2014
+This page will dynamically generate a table based
+on CSV text that is entered into the box. 
+-->
+<head>
+<style>
+body{background-color: rgb(205,205,205);}
+table, tr, td{border: 1px solid black;}
+</style>
+<meta charset="utf-8">
+<title>Table Generator</title>
+</head>
+<body>
+<script>
+function getText(text, table){
+	text = text.value.split("\n");
+	for(var i = 0; i < text.length; i++){
+		text[i] = text[i].split(",");
+	}
+	_buildTable(text, table);
+ }
+ 
+ function _buildTable(array, table){
+	for (var i=0;i<array.length;i++) {
+		var newRow = table.insertRow(i);
+		for(var j=0; j<array[i].length; j++){
+			var newCell = newRow.insertCell(j);
+			var data = document.createTextNode(array[i][j]);
+			newCell.appendChild(data);
+		}
+    }
+ }
+ 
+ function clearTable(table){
+	while(table.hasChildNodes()){
+		table.removeChild(table.firstChild);
+	}
+ }
+ </script>
+<textarea class="FormElement" name="textInput" id="textInput" cols="40" rows="4"></textarea>
+<input type="button" value="Generate Table" onclick="getText(textInput, table)" />
+<input type="button" value="Clear Table" onclick="clearTable(table)" />
+<table id="table" ></table>
+ 
+</body>
+</html>
