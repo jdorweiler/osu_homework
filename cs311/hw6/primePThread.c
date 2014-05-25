@@ -105,7 +105,7 @@ int main(int argc, char **argv){
 	int num_proc = 1;
 	char option;
 
-	while ((option = getopt(argc, argv, "qm:c:vt")) != -1){
+	while ((option = getopt(argc, argv, "qm:cvt")) != -1){
 		switch(option){
 			case 'q':
 				// don't show list of primes to stdout
@@ -123,7 +123,8 @@ int main(int argc, char **argv){
 				break;
 			case 'c':
 				// concurrency, default this to 1
-				num_proc = atol(optarg);
+				if(optarg)
+					num_proc = atol(optarg);
 				break;
 			case 'v':
 				// concurrency, default this to 1
@@ -242,7 +243,16 @@ int main(int argc, char **argv){
 			}
 		}
 		else {
-			for(i = 3; i < max_prime-3; i++){
+			// print the first two pairs out manually
+			// since they don't follow the pattern 
+			// below. for printing in pairs only
+			if(TestBit(primes, 3)){
+				printf("%d ", 3);
+				printf("%d\n", 5);
+				printf("%d ", 5);
+				printf("%d\n", 7);
+			}
+			for(i = 8; i < max_prime-3; i++){
 				if(TestBit(primes, i)){
 					printf("%lu ", i);
 					newLine++;
