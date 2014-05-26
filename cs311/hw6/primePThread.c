@@ -4,11 +4,7 @@
 #Class: cs311-400
 #Assignment: Homework 6
 
-Build with: 
-make
-
-test with 
-make validate
+Run: ./primeTest.bash
 */
 #define _BSD_SOURCE
 
